@@ -1,58 +1,113 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+
+  <div class="container mt-4">
+    <form v-on:submit.prevent="onSubmit" class="border border-2 rounded-3 text-center">
+      <div class="row text-dark justify-content-center">
+
+        <!-- Buscar por Nombre -->
+        <div class = "col-3">
+          <div class="mb-3 mx-3 my-3">
+            <label for="" class="form-label">Buscar por Nombre</label>
+            <input type="text" class="form-control" v-model="form.nombre">
+          </div>
+
+          <div class="d-grid gap-2 mx-3 my-3">
+            <input class="btn btn-info text-white" type="submit" value="Buscar"/>
+          </div>
+        </div>
+
+        <!-- Filtrar por Categoria -->
+        <div class = "col-3">
+          <label for="" class="form-label mt-3">Filtrar por Categoria</label><br>
+          <select class="mt-3" name="select" v-model="form.categoria">
+            <!-- <option value="selectEstado" selected>-- Categoria --</option> -->
+            <option value="Heladeras">Heladeras</option>
+            <option value="Hardware">Hardware</option>
+            <option value="PC">PC</option>
+            <option value="Lavarropas">Lavarropas</option>
+            <option value="Microondas">Microondas</option>
+            <option value="Televisores">Televisores</option>
+            <option value="Celulares">Celulares</option>
+          </select>
+          <div class="d-grid gap-2 mx-3 my-3">
+            <input class="btn btn-info text-white" type="submit" value="Buscar"/>
+          </div>
+        </div>
+
+      </div>
+    </form>
   </div>
+
+  <!-- PAGINATION -->
+  <!-- <div class="container mt-4">
+      <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center" id="paginator">
+            <button id="prev" class="page-item border border-2" @click="prevPage">Previous</button>
+            <button id="next" class="page-item border border-2" @click="nextPage">Next</button>
+          </ul>
+      </nav>
+  </div> -->
+
+  <div class="container">
+    <div class="row mb-4 text-dark" id="cards" >
+      <div :key="p.id" v-for="p in productos" class = "col-4 mt-4">
+          <Producto :producto="p" />
+      </div>
+    </div>
+  </div>
+  
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
+import axios from "axios";
+import Producto from "./Producto.vue";
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+export default {
+  name: "HelloWorld",
+  data() {
+    return {
+      productos: [],
+      form: {
+        nombre: null,
+        categoria: null
+      }
+    };
+  },
+  components: {
+    Producto,
+  },
+
+  methods: 
+  { 
+    async loadProductos(page = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto") {
+      const response = await axios.get(page); 
+      this.productos = response.data; 
+      // this.next = next;
+      // this.prev = prev;
+      // document.getElementById("prev").disabled = !this.prev;
+      // document.getElementById("next").disabled = !this.next;
+    }, 
+
+    async loadProducto(page) {
+      const response = await axios.get(page); 
+      this.productos = response.data;
+    }, 
+
+    // prevPage(){
+    //   this.loadProductos(this.prev)
+    // },
+    // nextPage() {
+    //   this.loadProductos(this.next)
+    // },
+
+    onSubmit() {
+        let url = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto"
+        this.form.nombre ? (url = url + '?nombre=' + this.form.nombre) : null;
+        this.loadProducto(url);
+    },
+  },
+  created() { 
+      this.loadProductos();
+  },
+};
+</script>
