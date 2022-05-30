@@ -5,8 +5,8 @@
       <div class="row justify-content-center">
         <div class="col text-center">
           <h1 class="d-inline text-white bg-dark row rounded">{{ producto.nombre }}</h1><br>
+          <img :src= "producto.img" class="card-img-top" style="width: 30%">
         </div>
-        <img :src= "producto.img" class="card-img-top" alt="...">
       </div>
     </div>
   </div>

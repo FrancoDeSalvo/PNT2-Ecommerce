@@ -1,7 +1,7 @@
 <template>
   <div >
     <div class="card" style="width: 18rem;">
-      <img :src= "producto.img" class="card-img-top" alt="...">
+      <img :src= "producto.img" class="card-img-top" alt="Responsive image">
       <div class="card-body">
           <router-link :to="url"><h5 class="card-title"> {{producto.nombre}}</h5></router-link>
           <p class="card-text">Precio: ${{producto.precio}}</p>
