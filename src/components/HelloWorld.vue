@@ -108,6 +108,10 @@ export default {
   },
   created() { 
       this.loadProductos();
+      
+        localStorage.logged
+      
+      console.log("local", localStorage.logged);
   },
 };
 </script>
