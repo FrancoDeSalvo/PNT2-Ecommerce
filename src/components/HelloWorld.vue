@@ -10,30 +10,12 @@
             <label for="" class="form-label">Buscar por Nombre</label>
             <input type="text" class="form-control" v-model="form.nombre">
           </div>
-
+          
           <div class="d-grid gap-2 mx-3 my-3">
             <input class="btn btn-info text-white" type="submit" value="Buscar"/>
           </div>
         </div>
-
-        <!-- Filtrar por Categoria -->
-        <div class = "col-3">
-          <label for="" class="form-label mt-3">Filtrar por Categoria</label><br>
-          <select class="mt-3" name="select" v-model="form.categoria">
-            <!-- <option value="selectEstado" selected>-- Categoria --</option> -->
-            <option value="Heladeras">Heladeras</option>
-            <option value="Hardware">Hardware</option>
-            <option value="PC">PC</option>
-            <option value="Lavarropas">Lavarropas</option>
-            <option value="Microondas">Microondas</option>
-            <option value="Televisores">Televisores</option>
-            <option value="Celulares">Celulares</option>
-          </select>
-          <div class="d-grid gap-2 mx-3 my-3">
-            <input class="btn btn-info text-white" type="submit" value="Buscar"/>
-          </div>
-        </div>
-
+      
       </div>
     </form>
   </div>
@@ -50,6 +32,14 @@
 
   <div class="container">
     <div class="row mb-4 text-dark" id="cards" >
+      <div :key="c.id" v-for="c in categorias" class = "col-4 mt-4">
+          <Categoria :categoria="c" />
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row mb-4 text-dark" id="cards" >
       <div :key="p.id" v-for="p in productos" class = "col-4 mt-4">
           <Producto :producto="p" />
       </div>
@@ -61,32 +51,42 @@
 <script>
 import axios from "axios";
 import Producto from "./Producto.vue";
+import Categoria from "./Categorias.vue";
 
 export default {
   name: "HelloWorld",
   data() {
     return {
       productos: [],
+      categorias: [],
       form: {
         nombre: null,
-        categoria: null
       }
     };
   },
   components: {
-    Producto,
+    Categoria, Producto
   },
 
   methods: 
   { 
     async loadProductos(page = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto") {
       const response = await axios.get(page); 
-      this.productos = response.data; 
+      const productos = response.data; 
+      this.categorias = this.getCategorias(productos);
       // this.next = next;
       // this.prev = prev;
       // document.getElementById("prev").disabled = !this.prev;
       // document.getElementById("next").disabled = !this.next;
     }, 
+
+    getCategorias(productos){
+      const categorias = productos.map(x => x.categoria);
+      let categoriasUnicas = categorias.filter((item, index) => {
+        return categorias.indexOf(item) === index;
+      })
+      return categoriasUnicas;
+    },
 
     async loadProducto(page) {
       const response = await axios.get(page); 
@@ -101,15 +101,17 @@ export default {
     // },
 
     onSubmit() {
-        let url = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto"
+      let url = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto"
+      if(this.form.nombre){
         this.form.nombre ? (url = url + '?nombre=' + this.form.nombre) : null;
-        this.loadProducto(url);
+      }
+      this.loadProducto(url)
     },
   },
   created() { 
       this.loadProductos();
       
-        localStorage.logged
+      localStorage.logged
       
       console.log("local", localStorage.logged);
   },

@@ -20,31 +20,15 @@
       </div>
 
       <form class="d-flex">
-
-
-
-        <select class="me-2" name="select">
-          <option value="selectEstado" selected>-- Categoria --</option>
-          <option value="Heladeras">Heladeras</option>
-          <option value="Hardware">Hardware</option>
-          <option value="PC">PC</option>
-          <option value="Lavarropas">Lavarropas</option>
-          <option value="Microondas">Microondas</option>
-          <option value="Televisores">Televisores</option>
-          <option value="Celulares">Celulares</option>
-        </select>
-
         <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search">
-
         <button class="btn btn-outline-success" type="submit">Buscar</button>
-          
       </form>
 
-        <li class="nav-item">
-            <router-link class="nav-link active" to="/login" :disabled="logeado()">Ingresar</router-link>
-          </li>
-
-
+      <li class="nav-item d-flex">
+        <router-link class="nav-link active" to="/login" :disabled="logeado()">
+          <button class="btn btn-outline-primary" type="submit">Ingresar</button>
+        </router-link>
+      </li>
 
     </div>
   </nav>

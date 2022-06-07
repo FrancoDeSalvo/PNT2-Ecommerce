@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import HelloWorld from "../components/HelloWorld.vue";
 import ProductoDetalle from "../components/ProductoDetalle.vue";
 import Carrito from "../components/Carrito.vue";
+import Productos from "../components/Productos.vue";
 import Login from "../components/Login.vue"
 
 const logged = () => {
@@ -34,6 +35,11 @@ const routes = [
         path: '/Login', 
         name: 'Login',
         component: Login
+    },
+    {
+        path: '/Productos/:categoria', 
+        name: 'Productos',
+        component: Productos
     }
 ];
 
