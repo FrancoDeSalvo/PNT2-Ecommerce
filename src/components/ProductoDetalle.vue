@@ -1,36 +1,35 @@
 <template>
-
-  <div>
-    <div class="container mt-4 ">
+  
+    <div class="container mt-4 text-center">
       <div class="row justify-content-center">
-        <div class="col text-center">
-          <h1 class="d-inline text-white bg-dark row rounded">{{ producto.nombre }}</h1><br>
-          <img :src= "producto.img" class="card-img-top" style="width: 30%">
+        <div class="col-8 ">
+          <h2 class="text-white bg-secondary rounded">{{ producto.nombre }}</h2>
+          <img :src= "producto.img" class="card-img-top mt-3" alt="Responsive image" style="width: 40%"/>
         </div>
       </div>
     </div>
-  </div>
+  
 
     <div class="container mt-4 mb-4">
       <div class="row text-dark justify-content-center">
 
         <div class="col-2">
-          <h5 class="text-success">Descripcion</h5>
+          <h5 class="text-primary">Descripcion</h5>
           <p class="card-text">{{producto.descripcion}}</p>
         </div>
 
         <div class="col-2">
-          <h5 class="text-success">Stock</h5>
+          <h5 class="text-primary">Stock</h5>
           <p class="card-text">{{producto.stock}}</p>
         </div>
 
         <div class="col-2">
-          <h5 class="text-success">Precio</h5>
+          <h5 class="text-primary">Precio</h5>
           <p class="card-text">${{producto.precio}}</p>
         </div>
 
         <div class="col-2">
-          <h5 class="text-success">Disponibilidad</h5>
+          <h5 class="text-primary">Disponibilidad</h5>
           <p class="card-text">{{this.disponible}}</p>
         </div>
 
@@ -39,8 +38,8 @@
 
     <div class="container">
       <div class="row text-dark justify-content-center">
-        <div class="col-2 d-grid gap-2 mx-3 my-3">
-          <input class="btn btn-info text-white" type="submit" value="Agregar al carrito"/>
+        <div class="col-2 d-grid gap-2 mx-3 my-3 mt-5">
+            <button class="btn btn-outline-success" type="button">Agregar al Carrito</button>
         </div>
       </div>
     </div>
@@ -61,9 +60,9 @@ export default {
   },
   methods: {
     async loadProducto() {
-      const response = await axios.get(`https://6282d2e692a6a5e4621a2391.mockapi.io/Producto/${this.id}`);
+      const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.id}`);
       this.producto = response.data;
-      this.disponible = !this.producto.disponible
+      this.disponible = !this.producto.disponible;
     },
   },
   created() {

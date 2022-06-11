@@ -1,24 +1,14 @@
 <template>
 
-  <div class="container mt-4">
-    <form v-on:submit.prevent="onSubmit" class="border border-2 rounded-3 text-center">
-      <div class="row text-dark justify-content-center">
-
-        <!-- Buscar por Nombre -->
-        <div class = "col-3">
-          <div class="mb-3 mx-3 my-3">
-            <label for="" class="form-label">Buscar por Nombre</label>
-            <input type="text" class="form-control" v-model="form.nombre">
-          </div>
-          
-          <div class="d-grid gap-2 mx-3 my-3">
-            <input class="btn btn-info text-white" type="submit" value="Buscar"/>
-          </div>
+ <div>
+    <div class="container mt-4 ">
+      <div class="row justify-content-center">
+        <div class="col text-center">
+          <h1 class="d-inline text-white bg-danger row rounded">{{ categoria }}</h1><br>
         </div>
-        
       </div>
-    </form>
-  </div> 
+    </div>
+  </div>
 
   <div class="container">
     <div class="row mb-4 text-dark" id="cards" >
@@ -51,20 +41,26 @@ export default {
 
   methods: 
   { 
-    async loadProductos(page = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto") {
-      const response = await axios.get(page); 
-      const p = response.data; 
-      this.productos = p.filter(x => x.categoria === this.categoria)
-      console.log(this.categoria);
+    async loadProductos(page = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos") {
+      const p = await this.getResponse(page); 
+      const categoria = await this.getCategoria();
+      this.productos = await p.filter(x => x.categoria == categoria.id)
     }, 
-
+    async getCategoria(){
+      const c = await this.getResponse("https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias"); 
+      const categoriaEncontrada = c.find(x => x.nombre === this.categoria);
+      return categoriaEncontrada;
+    },
+    async getResponse(page){
+      const response = await axios.get(page); 
+      return response.data; 
+    },
     async loadProducto(page) {
       const response = await axios.get(page); 
       this.productos = response.data;
     }, 
-
     onSubmit() {
-        let url = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto"
+        let url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos"
         if(this.form.nombre){
           this.form.nombre ? (url = url + '?nombre=' + this.form.nombre) : null;
         }

@@ -1,10 +1,9 @@
 <template>
 
-  <div class="container mt-4">
+  <!-- <div class="container mt-4">
     <form v-on:submit.prevent="onSubmit" class="border border-2 rounded-3 text-center">
       <div class="row text-dark justify-content-center">
 
-        <!-- Buscar por Nombre -->
         <div class = "col-3">
           <div class="mb-3 mx-3 my-3">
             <label for="" class="form-label">Buscar por Nombre</label>
@@ -18,7 +17,7 @@
       
       </div>
     </form>
-  </div>
+  </div> -->
 
   <!-- PAGINATION -->
   <!-- <div class="container mt-4">
@@ -70,24 +69,15 @@ export default {
 
   methods: 
   { 
-    async loadProductos(page = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto") {
+    async loadProductos(page = "https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias") {
       const response = await axios.get(page); 
-      const productos = response.data; 
-      this.categorias = this.getCategorias(productos);
+      this.categorias = response.data; 
       // this.next = next;
       // this.prev = prev;
       // document.getElementById("prev").disabled = !this.prev;
       // document.getElementById("next").disabled = !this.next;
     }, 
-
-    getCategorias(productos){
-      const categorias = productos.map(x => x.categoria);
-      let categoriasUnicas = categorias.filter((item, index) => {
-        return categorias.indexOf(item) === index;
-      })
-      return categoriasUnicas;
-    },
-
+    
     async loadProducto(page) {
       const response = await axios.get(page); 
       this.productos = response.data;
@@ -101,7 +91,7 @@ export default {
     // },
 
     onSubmit() {
-      let url = "https://6282d2e692a6a5e4621a2391.mockapi.io/Producto"
+      let url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos"
       if(this.form.nombre){
         this.form.nombre ? (url = url + '?nombre=' + this.form.nombre) : null;
       }

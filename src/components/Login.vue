@@ -44,7 +44,7 @@ export default {
   methods: 
   { 
     async login() {
-      const response = await axios.get("https://6282d2e692a6a5e4621a2391.mockapi.io/Usuario"); 
+      const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios"); 
       this.users = response.data; 
       const x = this.users.find(u => u.nombreUsuario == this.form.username && u.password == this.form.password)
       console.log(x)
