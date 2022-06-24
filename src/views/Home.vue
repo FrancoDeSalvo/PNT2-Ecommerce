@@ -30,58 +30,58 @@
   </div> -->
 
   <div class="container">
-    <div class="row mb-4 text-dark" id="cards" >
-      <div :key="c.id" v-for="c in categorias" class = "col-4 mt-4">
-          <Categoria :categoria="c" />
+    <div class="row mb-4 text-dark" id="cards">
+      <div :key="c.id" v-for="c in categorias" class="col-4 mt-4">
+        <Categoria :categoria="c" />
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="row mb-4 text-dark" id="cards" >
-      <div :key="p.id" v-for="p in productos" class = "col-4 mt-4">
-          <Producto :producto="p" />
+    <div class="row mb-4 text-dark" id="cards">
+      <div :key="p.id" v-for="p in productos" class="col-4 mt-4">
+        <Producto :producto="p" />
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
 import axios from "axios";
-import Producto from "./Producto.vue";
-import Categoria from "./Categorias.vue";
+import Producto from "../components/Producto.vue";
+import Categoria from "../components/shared/Categorias.vue";
 
 export default {
-  name: "HelloWorld",
+  name: "HomeIndex",
   data() {
     return {
       productos: [],
       categorias: [],
       form: {
         nombre: null,
-      }
+      },
     };
   },
   components: {
-    Categoria, Producto
+    Categoria, Producto, 
   },
 
-  methods: 
-  { 
-    async loadProductos(page = "https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias") {
-      const response = await axios.get(page); 
-      this.categorias = response.data; 
+  methods: {
+    async loadProductos(
+      page = "https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias"
+    ) {
+      const response = await axios.get(page);
+      this.categorias = response.data;
       // this.next = next;
       // this.prev = prev;
       // document.getElementById("prev").disabled = !this.prev;
       // document.getElementById("next").disabled = !this.next;
-    }, 
-    
+    },
+
     async loadProducto(page) {
-      const response = await axios.get(page); 
+      const response = await axios.get(page);
       this.productos = response.data;
-    }, 
+    },
 
     // prevPage(){
     //   this.loadProductos(this.prev)
@@ -91,19 +91,19 @@ export default {
     // },
 
     onSubmit() {
-      let url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos"
-      if(this.form.nombre){
-        this.form.nombre ? (url = url + '?nombre=' + this.form.nombre) : null;
+      let url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos";
+      if (this.form.nombre) {
+        this.form.nombre ? (url = url + "?nombre=" + this.form.nombre) : null;
       }
-      this.loadProducto(url)
+      this.loadProducto(url);
     },
   },
-  created() { 
-      this.loadProductos();
-      
-      localStorage.logged
-      
-      console.log("local", localStorage.logged);
+  created() {
+    this.loadProductos();
+
+    localStorage.logged;
+
+    console.log("local", localStorage.logged);
   },
 };
 </script>

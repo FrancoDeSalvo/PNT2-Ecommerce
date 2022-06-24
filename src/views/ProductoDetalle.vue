@@ -38,10 +38,14 @@
 
     <div class="container">
       <div class="row text-dark justify-content-center">
-        <div class="col-2 d-grid gap-2 mx-3 my-3 mt-5">
+        <div class="col-3 d-grid gap-2 mx-3 my-3 mt-5">
             <button class="btn btn-outline-success" type="button">Agregar al Carrito</button>
         </div>
       </div>
+    </div>
+
+    <div class="container text-center mb-4 mt-1">
+      <router-link to="/">Home</router-link>
     </div>
 
 </template>

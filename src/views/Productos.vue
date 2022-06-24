@@ -22,7 +22,7 @@
 
 <script>
 import axios from "axios";
-import Producto from "./Producto.vue";
+import Producto from "../components/Producto.vue";
 
 export default {
   name: "ProductosX",
