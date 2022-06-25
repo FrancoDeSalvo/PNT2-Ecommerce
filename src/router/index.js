@@ -5,6 +5,7 @@ import Carrito from "../components/Carrito.vue";
 import Productos from "../views/Productos.vue";
 import Login from "../components/Login.vue"
 import Registro from "../components/Registro.vue"
+import Busqueda from "../views/Busqueda.vue"
 
 const logged = () => {
     console.log("estoy acaaa")
@@ -48,6 +49,11 @@ const routes = [
         name: 'Registro',
         component: Registro
     },
+    {
+        path: '/Busqueda/:nombre', 
+        name: 'Busqueda',
+        component: Busqueda,
+    }
 ];
 
 const router = createRouter({

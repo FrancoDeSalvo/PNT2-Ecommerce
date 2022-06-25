@@ -18,30 +18,24 @@
         </ul>
       </div>
 
-      <form class="d-flex me-2">
-        <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search"  v-model="form.nombre">
-          <input class="btn btn-outline-success " type="submit" value="Buscar" />
+      <form class="d-flex me-2" v-on:submit.prevent>
+        <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search"  
+          v-model="dataBusqueda" @keyup="busqueda">
       </form>
   
       <div>
-        <div v-if=logged>
-          <div class="d-flex">
-            <router-link class="link active me-2" to="/login">
-              <input class="btn btn-outline-primary" type="submit" value="Ingresar" v-on="logeado()"/>
-            </router-link>
+        <div class="d-flex">
+          <router-link class="link active me-2" to="/login">
+            <input class="btn btn-outline-primary" type="submit" value="Ingresar" v-on="logeado()"/>
+          </router-link>
 
-            <router-link class="link active me-2" to="/registro">
-              <input class="btn btn-outline-primary" type="submit" value="Registrarse" />
-            </router-link>
-          </div>
-        </div>
+          <router-link class="link active me-2" to="/registro">
+            <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
+          </router-link>
 
-        <div v-else>
-          <div class="d-flex">
-            <router-link class="link active me-2" to="/">
-              <input class="btn btn-outline-danger" type="submit" value="Salir" v-on="salir()"/>
-            </router-link>
-          </div>
+          <router-link class="link active me-2" to="/">
+            <input class="btn btn-outline-danger" type="submit" value="Salir" v-on="salir()"/>
+          </router-link>
         </div>
       </div>
 
@@ -56,15 +50,22 @@ export default {
   data() {
     return {
       logged: false,
-      form:{
-        nombre: null
-      }
+      dataBusqueda:"",
     };
   },
   methods: {
-    loadNavBar(){
-      this.logeado()
+    busqueda() {
+      if (!this.dataBusqueda) {
+        this.$router.push({
+          name: "Home",
+        });
+      }        
+      this.$router.push({
+        name: "Busqueda",
+        params: { nombre: this.dataBusqueda },
+      });
     },
+
     logeado(){
       if(localStorage.logged !== 0){
         this.logged = true;
@@ -76,9 +77,9 @@ export default {
     salir(){
       localStorage.logged === 0
     }
+
   },
   created() {
-    this.loadNavBar();
     console.log("logged (navbar)", !this.logged);
   },
 };
