@@ -11,7 +11,7 @@
                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" v-model="form.username">
                 </div>
                 <div class="mb-2"> 
-                    <label for="password">Contaseña</label>
+                    <label for="password">Contraseña</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
                 </div>
                 <div class="mb-2"> 

@@ -4,6 +4,7 @@ import ProductoDetalle from "../views/ProductoDetalle.vue";
 import Carrito from "../components/Carrito.vue";
 import Productos from "../views/Productos.vue";
 import Login from "../components/Login.vue"
+import Registro from "../components/Registro.vue"
 // import Busqueda from "../views/Busqueda.vue"
 
 const logged = () => {
@@ -41,6 +42,11 @@ const routes = [
         path: '/Productos/:categoria', 
         name: 'Productos',
         component: Productos
+    },
+    {
+        path: '/Registro', 
+        name: 'Registro',
+        component: Registro
     },
     // {
     //     path: '/Busqueda/:nombre', 

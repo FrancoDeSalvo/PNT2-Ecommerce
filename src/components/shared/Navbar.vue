@@ -24,14 +24,23 @@
           <input class="btn btn-outline-success" type="submit" value="Buscar" />
         <!-- </router-link> -->
       </form>
-
+  
+    
       <li class="nav-item d-flex">
-        <router-link class="nav-link active" to="/login" :disabled="logeado()">
+        <router-link class="nav-link active" to="/login">
           <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
         </router-link>
       </li>
+    
+    
+      <li class="nav-item d-flex">
+        <router-link class="nav-link active" to="/registro">
+          <input class="btn btn-outline-primary" type="submit" value="Registrarse" />
+        </router-link>
+      </li>
 
-    </div>
+
+  </div>                                
   </nav>
 
 </template>

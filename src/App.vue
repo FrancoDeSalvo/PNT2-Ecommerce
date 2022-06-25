@@ -12,6 +12,10 @@ export default {
   name: "App",
   components:{
     NavBar
+  },
+
+  created(){
+    localStorage.logged = 0;
   }
 };
 </script>
