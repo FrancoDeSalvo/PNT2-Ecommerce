@@ -16,6 +16,7 @@ export default {
 
   created(){
     localStorage.logged = 0;
+    console.log("app.vue", localStorage.logged);
   }
 };
 </script>

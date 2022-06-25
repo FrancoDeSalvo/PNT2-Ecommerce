@@ -1,52 +1,42 @@
 <template>
-  
-    <div class="container mt-4 text-center">
-      <div class="row justify-content-center">
-        <div class="col-8 ">
-          <h2 class="text-white bg-secondary rounded">{{ producto.nombre }}</h2>
-          <img :src= "producto.img" class="card-img-top mt-3" alt="Responsive image" style="width: 40%"/>
-        </div>
+
+  <div class="text-center">
+      <h3 class="d-block text-white bg-secondary row rounded pt-2 pb-2">{{ producto.nombre }}</h3>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row">
+
+      <!-- <div class="col-6 text-center border border-3"> -->
+      <div class="col-6 text-center mt-5">
+        <img :src= "producto.img" class="card-img-top img-fluid w-50" alt="Responsive image" />
       </div>
-    </div>
-  
 
-    <div class="container mt-4 mb-4">
-      <div class="row text-dark justify-content-center">
+      <!-- <div class="col-6 border border-3 text-center"> -->
+      <div class="col-6">
+        <h5 class="text-secondary">Precio</h5>
+        <p class="card-text">${{producto.precio}}</p>
 
-        <div class="col-2">
-          <h5 class="text-primary">Descripcion</h5>
-          <p class="card-text">{{producto.descripcion}}</p>
-        </div>
+        <h5 class="text-secondary">Estado</h5>
+        <p class="card-text">{{this.disponible}}</p>
 
-        <div class="col-2">
-          <h5 class="text-primary">Stock</h5>
-          <p class="card-text">{{producto.stock}}</p>
-        </div>
+        <h5 class="text-secondary">Stock</h5>
+        <p class="card-text">{{producto.stock}}</p>
 
-        <div class="col-2">
-          <h5 class="text-primary">Precio</h5>
-          <p class="card-text">${{producto.precio}}</p>
-        </div>
+        <h5 class="text-secondary mt-3">Descripcion</h5>
+        <p class="card-text">{{producto.descripcion}}</p>
 
-        <div class="col-2">
-          <h5 class="text-primary">Disponibilidad</h5>
-          <p class="card-text">{{this.disponible}}</p>
+        <div class="text-center mt-4">
+              <button class="btn btn-outline-success" type="button">Agregar al Carrito</button>
         </div>
 
       </div>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="row text-dark justify-content-center">
-        <div class="col-3 d-grid gap-2 mx-3 my-3 mt-5">
-            <button class="btn btn-outline-success" type="button">Agregar al Carrito</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="container text-center mb-4 mt-1">
-      <router-link to="/">Home</router-link>
-    </div>
+  <div class="container text-center mb-4 mt-5">
+    <router-link to="/">Home</router-link>
+  </div>
 
 </template>
 
@@ -59,15 +49,20 @@ export default {
     return {
       id: this.$route.params.id,
       producto: Object,
-      disponible: null,
+      disponible: "Disponible",
     };
   },
   methods: {
     async loadProducto() {
       const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.id}`);
       this.producto = response.data;
-      this.disponible = !this.producto.disponible;
+      this.disponibilidad()
     },
+    async disponibilidad(){
+      if(this.producto.disponible){
+        this.disponible = "No disponible";
+      }
+    }
   },
   created() {
     this.loadProducto();

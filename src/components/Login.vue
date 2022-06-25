@@ -10,12 +10,17 @@
                     <label for="nombre">Nombre de Usuario</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" v-model="form.username">
                 </div>
-                <div class="mb-2"> 
+                <div class="mb-3"> 
                     <label for="password">Contraseña</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
                 </div>
-                <div class="mb-2"> 
+
+                <div class="mb-2 d-inline me-3"> 
                     <button class="btn btn-primary text-white" type="submit">Ingresar</button>
+                </div>
+
+                <div class="mb-2 d-inline"> 
+                    <router-link class="link active" to="/Registro">No tienes cuenta? Registrate</router-link>
                 </div>
             </form>
         </div>
@@ -52,9 +57,9 @@ export default {
       } else{
           alert("usuario o contraseña incorrecto")
       }
-      console.log(localStorage.logged)
+      console.log("LocalStorage login", localStorage.logged)
     },  
-  }
+  },
 };
 
 </script>

@@ -37,18 +37,10 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="row mb-4 text-dark" id="cards">
-      <div :key="p.id" v-for="p in productos" class="col-4 mt-4">
-        <Producto :producto="p" />
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
 import axios from "axios";
-import Producto from "../components/Producto.vue";
 import Categoria from "../components/shared/Categorias.vue";
 
 export default {
@@ -63,7 +55,7 @@ export default {
     };
   },
   components: {
-    Categoria, Producto, 
+    Categoria, 
   },
 
   methods: {
@@ -101,9 +93,9 @@ export default {
   created() {
     this.loadProductos();
 
-    localStorage.logged;
+    // localStorage.logged;
 
-    console.log("local", localStorage.logged);
+    console.log("localstorage home.vue", localStorage.logged);
   },
 };
 </script>

@@ -18,29 +18,34 @@
         </ul>
       </div>
 
-      <form v-on:submit.prevent="onSubmit" class="d-flex">
+      <form class="d-flex me-2">
         <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search"  v-model="form.nombre">
-        <!-- <router-link :to="url"> -->
-          <input class="btn btn-outline-success" type="submit" value="Buscar" />
-        <!-- </router-link> -->
+          <input class="btn btn-outline-success " type="submit" value="Buscar" />
       </form>
   
-    
-      <li class="nav-item d-flex">
-        <router-link class="nav-link active" to="/login">
-          <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
-        </router-link>
-      </li>
-    
-    
-      <li class="nav-item d-flex">
-        <router-link class="nav-link active" to="/registro">
-          <input class="btn btn-outline-primary" type="submit" value="Registrarse" />
-        </router-link>
-      </li>
+      <div>
+        <div v-if=logged>
+          <div class="d-flex">
+            <router-link class="link active me-2" to="/login">
+              <input class="btn btn-outline-primary" type="submit" value="Ingresar" v-on="logeado()"/>
+            </router-link>
 
+            <router-link class="link active me-2" to="/registro">
+              <input class="btn btn-outline-primary" type="submit" value="Registrarse" />
+            </router-link>
+          </div>
+        </div>
 
-  </div>                                
+        <div v-else>
+          <div class="d-flex">
+            <router-link class="link active me-2" to="/">
+              <input class="btn btn-outline-danger" type="submit" value="Salir" v-on="salir()"/>
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+    </div>                                
   </nav>
 
 </template>
@@ -50,24 +55,31 @@ export default {
   name: "NavBar",
   data() {
     return {
-      url: "/Busqueda/",
+      logged: false,
       form:{
         nombre: null
       }
     };
   },
   methods: {
-    logeado(){
-      let x = false
-       if(localStorage.logged != 0 && localStorage.logged){
-      x = true
-      }
-      return x;
+    loadNavBar(){
+      this.logeado()
     },
-    onSubmit(){
-      localStorage.productoABuscar = this.form.nombre;
-      // console.log("Soy el localstorage de productoAbUSCAR", localStorage.productoABuscar);
+    logeado(){
+      if(localStorage.logged !== 0){
+        this.logged = true;
+      
+      }
+      console.log("logged (navbar)", this.logged);
+
+    },
+    salir(){
+      localStorage.logged === 0
     }
-  }
+  },
+  created() {
+    this.loadNavBar();
+    console.log("logged (navbar)", !this.logged);
+  },
 };
 </script>

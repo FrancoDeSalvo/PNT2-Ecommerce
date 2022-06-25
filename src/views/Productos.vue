@@ -1,12 +1,8 @@
 <template>
 
  <div>
-    <div class="container mt-4 ">
-      <div class="row justify-content-center">
-        <div class="col text-center">
-          <h1 class="d-inline text-white bg-danger row rounded">{{ categoria }}</h1><br>
-        </div>
-      </div>
+    <div class="text-center">
+      <h1 class="d-block text-white bg-success row rounded pt-2 pb-2">- {{ categoria }} -</h1><br>
     </div>
   </div>
 
