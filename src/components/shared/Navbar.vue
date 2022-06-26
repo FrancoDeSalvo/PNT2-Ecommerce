@@ -23,20 +23,26 @@
           v-model="dataBusqueda" @keyup="busqueda">
       </form>
   
-      <div>
+      <div >
         <div class="d-flex">
-          <router-link class="link active me-2" to="/login">
+          <router-link class="link active me-2" to="/Login">
             <input class="btn btn-outline-primary" type="submit" value="Ingresar" v-on="logeado()"/>
           </router-link>
 
-          <router-link class="link active me-2" to="/registro">
+          <router-link class="link active me-2" to="/Registro">
             <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
           </router-link>
+        </div>
+      </div>
 
+      <div >
+        <div class="d-flex">
           <router-link class="link active me-2" to="/">
             <input class="btn btn-outline-danger" type="submit" value="Salir" v-on="salir()"/>
           </router-link>
         </div>
+
+
       </div>
 
     </div>                                
@@ -67,19 +73,20 @@ export default {
     },
 
     logeado(){
+      localStorage.logged = 1;
       if(localStorage.logged !== 0){
         this.logged = true;
-      
       }
       console.log("logged (navbar)", this.logged);
-
     },
+
     salir(){
       localStorage.logged === 0
     }
 
   },
   created() {
+    
     console.log("logged (navbar)", !this.logged);
   },
 };

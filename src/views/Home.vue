@@ -20,9 +20,9 @@ export default {
     return {
       productos: [],
       categorias: [],
-      form: {
-        nombre: null,
-      },
+      // form: {
+      //   nombre: null,
+      // },
     };
   },
   components: {
@@ -42,13 +42,13 @@ export default {
       this.productos = response.data;
     },
 
-    onSubmit() {
-      let url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos";
-      if (this.form.nombre) {
-        this.form.nombre ? (url = url + "?nombre=" + this.form.nombre) : null;
-      }
-      this.loadProducto(url);
-    },
+    // onSubmit() {
+    //   let url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Productos";
+    //   if (this.form.nombre) {
+    //     this.form.nombre ? (url = url + "?nombre=" + this.form.nombre) : null;
+    //   }
+    //   this.loadProducto(url);
+    // },
   },
   created() {
     this.loadProductos();

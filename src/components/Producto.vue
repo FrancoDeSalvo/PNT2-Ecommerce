@@ -7,7 +7,7 @@
       </router-link>
       <div class="card-body">
         <p class="card-text">Precio: ${{producto.precio}}</p>
-        <p class="card-text">Disponibilidad: {{this.disponible}}</p>
+        <p class="card-text">Estado: {{this.disponible}}</p>
       </div>
     </div>          
   </div>
@@ -20,11 +20,21 @@ export default {
   data() {
     return {
       url: `/ProductoDetalle/${this.producto.id}`,
-      disponible: !this.producto.eliminado
+      disponible: "Disponible"
     };
   },
   props: {
     producto: Object,
   },
+  methods:{
+    disponibilidad(){
+      if(this.producto.disponible){
+        this.disponible = "No disponible";
+      }
+    }
+  },
+  created(){
+    this.disponibilidad();
+  }
 };
 </script>
