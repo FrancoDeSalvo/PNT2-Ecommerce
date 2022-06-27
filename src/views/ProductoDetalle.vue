@@ -30,6 +30,7 @@
           <router-link to=/Carrito>
               <button class="btn btn-outline-success" type="button" @click="addtoCart">Agregar al Carrito</button>
           </router-link>    
+              
         </div>
 
       </div>
@@ -51,6 +52,7 @@ export default {
     return {
       id: this.$route.params.id,
       producto: Object,
+
       disponible: "Disponible",
       myVar: this.globalVar,
     };
@@ -66,8 +68,24 @@ export default {
         this.disponible = "No disponible";
       }
     },
-    addtoCart(){
-       localStorage.cart = [this.producto.id]
+    async addtoCart(){
+      const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
+      const {productos} = response.data;
+      console.log(productos);
+      console.log("productosDetalle", localStorage.userLogged);
+
+      const p = [... productos]
+      p.push(this.producto)
+      console.log(p);
+
+      const carrito = {idUsuario: localStorage.userLogged, productos: p}
+
+      const carritoResponse = await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
+      carritoResponse.id = response.data.id
+},
+
+  
+       //localStorage.cart = [this.producto.id]
       // console.log(localStorage.cart)
 
       // var array = [this.producto.id]
@@ -83,8 +101,8 @@ export default {
 
 
   
-   this.myVar.push(this.producto)
-  console.log(this.myVar)
+   //this.myVar.push(this.producto)
+  //console.log(this.myVar)
 
     //  console.log("---")
     // console.log($myGlobalVariable)
@@ -97,7 +115,7 @@ export default {
 
     //   a.push[datosDeCadaEquipoRecuperado];
     //   localStorage.setItem('myArray', JSON.stringify(a));
-    }
+    //}
   },
   created() {
     this.loadProducto();

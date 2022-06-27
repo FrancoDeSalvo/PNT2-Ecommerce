@@ -30,8 +30,11 @@
               
               
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                 <!--<router-link class="link active" to=/ProductoDetalle/ ${{producto.id}}>Volver al detalle del producto</router-link>-->
-                  <router-link class="link active" to=/ProductoDetalle/1>Volver al detalle del producto</router-link>
+                
+                  <router-link class="link active" :to= url>Volver al detalle del producto</router-link>
+
+                  <button type="button" class="btn btn-danger" @click="eliminarProducto()">-</button>
+                  <button type="button" class="btn btn-success" @click="agregarProducto()">+</button>
                 <h5 class="mb-0">$ {{producto.precio}}  {{producto.precioTotal}} </h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
@@ -60,20 +63,47 @@
 
 
 <script>
-
+import axios from "axios";
 export default {
   name: "ItemCarrito",
   data() {
     return {
+       url: `/ProductoDetalle/${this.producto.id}`,
+       productos:[]
     };
   },
   props: {
     producto: Object,
+    carrito :Object,
+    
   },
   methods:{
+    async traerProductos(){
+    const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
+    const {productos} = response.data
+    this.productos = productos
+    },
+
+    async agregarProducto(){
+     
+      this.productos.push(this.producto)
+      const carrito = {idUsuario: localStorage.userLogged, productos: this.productos}
+      await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
+      
+    },
+
+    async eliminarProducto(){
+      
+    
+      this.productos.pop(this.producto)
+      const carrito = {idUsuario: localStorage.userLogged, productos: this.productos}
+      await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
+      
+    }
+
   },
-  created(){
- 
+  async created(){
+    await this.traerProductos()
   }
 };
 </script>

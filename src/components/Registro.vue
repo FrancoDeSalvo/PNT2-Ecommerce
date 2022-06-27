@@ -65,7 +65,10 @@ export default {
         if(await this.mismoNombreUsuario(this.form.username) == undefined ){
             const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
             const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
+            const carrito ={idUsuario: usuario.id, productos :[]}
+            const response1 = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos", carrito);
             usuario.id = response.data.id;
+            carrito.id = response1.data.id
             alert("Registro con exito")
             this.$router.push({name: "Home"});
         }else{

@@ -24,7 +24,7 @@
       </form>
 
       <div>
-        <div v-if="userLogueadoNombre">
+        <div >
           <div class="d-flex">
             <router-link class="link active me-2" to="/Login">
               <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
@@ -36,10 +36,10 @@
           </div>
         </div>
 
-        <div v-else>
+        <div >
           <div class="d-flex">
-            <p class="text-white d-flex me-2">Hola! {{userLogueadoNombre}}</p>
-            <router-link class="link active me-2" to="/">
+            <!--<p class="text-white d-flex me-2">Hola! {{userLogueadoNombre}}</p>-->
+            <router-link class="link active me-2" to="/"> 
               <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
             </router-link>
           </div>

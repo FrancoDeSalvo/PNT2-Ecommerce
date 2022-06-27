@@ -15,11 +15,38 @@
         <div class="card mb-4">
           <div class="card-body p-4 d-flex flex-row">
             <h4 class="fw-normal mb-0 text-black">Total $ {{this.total}}</h4>
-            <button type="button" class="btn btn-outline-warning btn-lg ms-3">Comprar</button>
+            <!--<button type="button" class="btn btn-outline-warning btn-lg ms-3">Comprar</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal1"> Generar compra </button>-->
+            <router-link to="/">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1" @click="vaciarCarrito()"> Generar compra </button>
+            
+            </router-link>
+            
+              <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
+           
           </div>
         </div>
 
-       
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       </div>
     </div>
@@ -36,6 +63,7 @@
 
 <script>
 import ItemCarrito from "../components/ItemCarrito.vue";
+import axios from "axios";
 export default {
   name: "CarritoProductos",
  
@@ -43,21 +71,40 @@ export default {
     return {
        myVar: this.globalVar,
        total: 0,
-       items: Array
+       items: [],
+       productos :[]
     };
   },
   props: {
-    
+    carrito: Object,
   },
   components: {
     ItemCarrito, 
   },
   methods: {
-    contarUnidades(){
+
+    async vaciarCarrito(){
+      
+      this.productos =[]
+      const carrito = {idUsuario: localStorage.userLogged, productos: []}
+      await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
+      
+     
+    },
+
+    async traerProductos(){
+    const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
+    const {productos} = response.data
+    this.productos = productos
+    },
+
+   contarUnidades(){
     let key = "id"
     let arr2 = [];
+
+  
     
-  this.myVar.forEach((x)=>{
+  this.productos.forEach((x)=>{
      if(arr2.some((val)=>{ return val[key] == x[key] })){
        arr2.forEach((k)=>{
          if(k[key] === x[key]){ 
@@ -90,15 +137,17 @@ export default {
     },
 
 
-    calcularTotal(){
-      this.myVar.forEach( p => {
+    async calcularTotal(){
+      this.productos.forEach( p => {
         this.total += p.precio
       });
     }
   },
-  created() { 
-    this.calcularTotal();
-    this.contarUnidades();
+  async created() { 
+   await this.traerProductos();
+   await this.calcularTotal();
+     this.contarUnidades();
+    
   },
 };
 </script>
