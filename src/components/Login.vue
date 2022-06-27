@@ -15,14 +15,19 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
                 </div>
 
+        
+
                 <div class="mb-2 d-inline me-3"> 
+                    
                     <button class="btn btn-primary text-white" type="submit">Ingresar</button>
+                    
                 </div>
 
                 <div class="mb-2 d-inline"> 
                     <router-link class="link active" to="/Registro">No tienes cuenta? Registrate</router-link>
                 </div>
             </form>
+            
         </div>
         </div>
     </section>

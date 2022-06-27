@@ -26,7 +26,7 @@
       <div >
         <div class="d-flex">
           <router-link class="link active me-2" to="/Login">
-            <input class="btn btn-outline-primary" type="submit" value="Ingresar" v-on="logeado()"/>
+            <input class="btn btn-outline-primary" type="submit" value="Ingresar"/>
           </router-link>
 
           <router-link class="link active me-2" to="/Registro">
@@ -38,7 +38,7 @@
       <div >
         <div class="d-flex">
           <router-link class="link active me-2" to="/">
-            <input class="btn btn-outline-danger" type="submit" value="Salir" v-on="salir()"/>
+            <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
           </router-link>
         </div>
 
@@ -55,7 +55,7 @@ export default {
   name: "NavBar",
   data() {
     return {
-      logged: false,
+      logged: localStorage.logged,
       dataBusqueda:"",
     };
   },
@@ -71,17 +71,10 @@ export default {
         params: { nombre: this.dataBusqueda },
       });
     },
-
-    logeado(){
-      localStorage.logged = 1;
-      if(localStorage.logged !== 0){
-        this.logged = true;
-      }
-      console.log("logged (navbar)", this.logged);
-    },
-
-    salir(){
-      localStorage.logged === 0
+     salir(){
+     
+      localStorage.logged = 0
+      
     }
 
   },

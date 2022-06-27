@@ -26,10 +26,14 @@
                 </button> -->
                 <p class="lead fw-normal mb-2">{{producto.occurrence}}</p>
               </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$ {{producto.precio}}  {{producto.precioTotal}} </h5>
-              </div> 
+
               
+              
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                 <!--<router-link class="link active" to=/ProductoDetalle/ ${{producto.id}}>Volver al detalle del producto</router-link>-->
+                  <router-link class="link active" to=/ProductoDetalle/1>Volver al detalle del producto</router-link>
+                <h5 class="mb-0">$ {{producto.precio}}  {{producto.precioTotal}} </h5>
+              </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                 <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
               </div>

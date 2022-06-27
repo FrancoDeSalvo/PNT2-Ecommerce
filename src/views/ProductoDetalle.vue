@@ -27,7 +27,9 @@
         <p class="card-text">{{producto.descripcion}}</p>
 
         <div class="text-center mt-4">
+          <router-link to=/Carrito>
               <button class="btn btn-outline-success" type="button" @click="addtoCart">Agregar al Carrito</button>
+          </router-link>    
         </div>
 
       </div>
