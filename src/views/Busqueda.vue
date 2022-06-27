@@ -12,8 +12,8 @@
   <div class="container mt-4">
       <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center" id="paginator">
-            <button :disabled="currentPage == 1" id="prev" class="page-item border border-2" @click="prevPage">Previous</button>
-            <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2" @click="nextPage">Next</button>
+            <button :disabled="currentPage == 1" id="prev" class="page-item border border-2 mx-1" @click="prevPage"><i class="fa-solid fa-angle-left"></i></button>
+            <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2 mx-1" @click="nextPage"><i class="fa-solid fa-angle-right"></i></button>
           </ul>
       </nav>
   </div>

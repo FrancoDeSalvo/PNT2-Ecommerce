@@ -42,10 +42,10 @@
         </div>
         <router-link class="link active" :to= url>Volver al detalle del producto</router-link>
       </div>
-
+<!-- 
       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
         <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-      </div>
+      </div> -->
 
     </div>
   </div>

@@ -8,9 +8,19 @@
             <h3 class="fw-normal mb-0 text-black">Carrito de compras</h3>
           </div>
 
-          <div :key="c.id" v-for="c in items" class="">
+          <div :key="c.id" v-for="c in productosData" class="">
             <ItemCarrito :producto="c" />
           </div>
+
+          <!-- PAGINATION -->
+          <div class="container mt-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center" id="paginator">
+                  <button :disabled="currentPage == 1" id="prev" class="page-item border border-2 mx-1" @click="prevPage"><i class="fa-solid fa-angle-left"></i></button>
+                  <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2 mx-1" @click="nextPage"><i class="fa-solid fa-angle-right"></i></button>
+                </ul>
+            </nav>
+        </div>
 
           <div class="card mb-4 text-center">
             <!-- <div class="card-body p-4 d-flex flex-row justify-content-center"> -->
@@ -71,9 +81,11 @@ export default {
  
   data() {
     return {
-       total: 0,
-       items: [],
-       productos :[]
+      total: 0,
+      items: [],
+      productos :[],
+      perPage: 5,
+      currentPage: 1,
     };
   },
   props: {
@@ -81,6 +93,21 @@ export default {
   },
   components: {
     ItemCarrito, 
+  },
+  computed:{
+    productosData() {
+      let data = this.items;
+      // for (let i = 0; i < this.productos.length; i++) {
+      //   if (this.productos[i].categoria == this.categoriaId) {
+      //     data.push(this.productos[i]);
+      //   } 
+      // }
+      data = data.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+      return data;
+    },
   },
   methods: {
     async vaciarCarrito(){
@@ -92,7 +119,14 @@ export default {
     async traerProductos(){
       const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
       const {productos} = response.data
-    this.productos = productos
+      this.productos = productos
+    },
+
+    prevPage(){
+      this.currentPage--;
+    },
+    nextPage() {
+      this.currentPage++;
     },
     
     contarUnidades(){
