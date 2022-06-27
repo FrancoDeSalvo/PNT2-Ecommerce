@@ -7,12 +7,10 @@
   <div class="container mt-3">
     <div class="row">
 
-      <!-- <div class="col-6 text-center border border-3"> -->
       <div class="col-6 text-center mt-5">
         <img :src= "producto.img" class="card-img-top img-fluid w-50" alt="Responsive image" />
       </div>
 
-      <!-- <div class="col-6 border border-3 text-center"> -->
       <div class="col-6">
         <h5 class="text-secondary">Precio</h5>
         <p class="card-text">${{producto.precio}}</p>
@@ -30,10 +28,9 @@
           <router-link to=/Carrito>
               <button class="btn btn-outline-success" type="button" @click="addtoCart">Agregar al Carrito</button>
           </router-link>    
-              
         </div>
-
       </div>
+
     </div>
   </div>
 
@@ -52,9 +49,8 @@ export default {
     return {
       id: this.$route.params.id,
       producto: Object,
-
       disponible: "Disponible",
-      myVar: this.globalVar,
+      productos: []
     };
   },
   methods: {
@@ -63,28 +59,30 @@ export default {
       this.producto = response.data;
       this.disponibilidad()
     },
+    async getCarrito(){
+      const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
+      const {productos} = response.data;
+      this.productos = productos;
+    },
+    async addtoCart(){
+      const p = [... this.productos]
+      p.push(this.producto)
+      const carrito = {idUsuario: localStorage.userLogged, productos: p}
+      await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
+    },
     async disponibilidad(){
       if(this.producto.disponible){
         this.disponible = "No disponible";
       }
     },
-    async addtoCart(){
-      const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
-      const {productos} = response.data;
-      console.log(productos);
-      console.log("productosDetalle", localStorage.userLogged);
+  },
+  async created() {
+    await this.loadProducto();
+    await this.getCarrito();
+  },
+};
 
-      const p = [... productos]
-      p.push(this.producto)
-      console.log(p);
-
-      const carrito = {idUsuario: localStorage.userLogged, productos: p}
-
-      const carritoResponse = await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
-      carritoResponse.id = response.data.id
-},
-
-  
+ 
        //localStorage.cart = [this.producto.id]
       // console.log(localStorage.cart)
 
@@ -116,9 +114,5 @@ export default {
     //   a.push[datosDeCadaEquipoRecuperado];
     //   localStorage.setItem('myArray', JSON.stringify(a));
     //}
-  },
-  created() {
-    this.loadProducto();
-  },
-};
 </script>
+

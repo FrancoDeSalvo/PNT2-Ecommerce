@@ -51,13 +51,12 @@ export default {
       if(user !== undefined){
         localStorage.logged = 1;
         localStorage.userLogged = user.id;
+        localStorage.userLoggedName = user.username;
         this.$router.push({name: "Home"});
       }
       else{
         alert("usuario o contraseña incorrecto")
       }
-      console.log("LocalStorage login", localStorage.logged)
-    //  console.log("LocalStorage login", localStorage.userLogged)
     },  
     async getUser(){
       const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios"); 

@@ -43,16 +43,11 @@ export default {
         return this.productos
       }
       for (let i = 0; i < this.productos.length; i++) {
-        if (this.productos[i].nombre
-            .toLowerCase()
-            .includes(this.$route.params.nombre.toLowerCase())) {
+        if (this.productos[i].nombre.toLowerCase().includes(this.$route.params.nombre.toLowerCase())) {
           data.push(this.productos[i]);
         } 
       }
-      data = data.slice(
-        (this.currentPage - 1) * this.perPage,
-        this.currentPage * this.perPage
-      );
+      data = data.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage);
       return data;
     },
   },

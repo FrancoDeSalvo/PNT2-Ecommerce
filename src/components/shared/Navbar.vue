@@ -23,27 +23,21 @@
           v-model="dataBusqueda" @keyup="busqueda">
       </form>
 
-      <div>
-        <div >
-          <div class="d-flex">
-            <router-link class="link active me-2" to="/Login">
-              <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
-            </router-link>
+      <div class="d-flex">
+        <router-link class="link active me-2" to="/Login">
+          <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
+        </router-link>
 
-            <router-link class="link active me-2" to="/Registro">
-              <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
-            </router-link>
-          </div>
-        </div>
+        <router-link class="link active me-2" to="/Registro">
+          <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
+        </router-link>
+      </div>
 
-        <div >
-          <div class="d-flex">
-            <!--<p class="text-white d-flex me-2">Hola! {{userLogueadoNombre}}</p>-->
-            <router-link class="link active me-2" to="/"> 
-              <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
-            </router-link>
-          </div>
-        </div>
+      <div class="d-flex">
+        <!--<p class="text-white d-flex me-2">Hola! {{userLogueadoNombre}}</p>-->
+        <router-link class="link active me-2" to="/"> 
+          <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
+        </router-link>
       </div>
 
     </div>                                

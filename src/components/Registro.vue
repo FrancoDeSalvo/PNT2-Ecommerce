@@ -26,8 +26,11 @@
                     <label for="dni">Dni</label>
                     <input type="text" class="form-control" name="dni" id="dni" placeholder="Ingrese su dni" v-model="form.dni">
                 </div>
-                <div class="mb-2"> 
+                <div class="mb-2 d-inline me-3"> 
                     <button class="btn btn-primary text-white" type="submit">Registrarse</button>
+                </div>
+                <div class="mb-2 d-inline"> 
+                    <router-link class="link active" to="/Login">Ya tienes cuenta? Iniciar sesion</router-link>
                 </div>
             </form>
         </div>
@@ -65,15 +68,18 @@ export default {
         if(await this.mismoNombreUsuario(this.form.username) == undefined ){
             const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
             const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
-            const carrito ={idUsuario: usuario.id, productos :[]}
-            const response1 = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos", carrito);
             usuario.id = response.data.id;
-            carrito.id = response1.data.id
+            this.postCarrito(usuario);
             alert("Registro con exito")
-            this.$router.push({name: "Home"});
+            this.$router.push({name: "Login"});
         }else{
             alert("No podes usar ese nombre de usuario")
         }
+    },
+    async postCarrito(usuario){
+        const carrito ={idUsuario: usuario.id, productos :[]}
+        const response1 = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos", carrito);
+        carrito.id = response1.data.id
     }
   },
 };

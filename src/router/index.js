@@ -8,7 +8,7 @@ import Registro from "../components/Registro.vue"
 import Busqueda from "../views/Busqueda.vue"
 
 const logged = () => {
-    console.log("estoy acaaa")
+    console.log("index.js localStorage.logged")
     console.log(localStorage.logged)
     if (localStorage.logged == 0 || !localStorage.logged) {
 

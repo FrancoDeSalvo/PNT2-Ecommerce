@@ -1,6 +1,6 @@
 <template>
 
- <div>
+  <div>
     <div class="text-center">
       <h1 class="d-block text-white bg-success row rounded pt-2 pb-2">- {{ categoria }} -</h1><br>
     </div>
