@@ -12,7 +12,9 @@
             <router-link class="nav-link active" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/Carrito">Carrito</router-link>
+            <router-link class="nav-link active" to="/Carrito">
+              Carrito <i class="fa-solid fa-cart-shopping"></i>
+            </router-link>
           </li>
 
         </ul>

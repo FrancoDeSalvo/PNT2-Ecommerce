@@ -26,7 +26,9 @@
 
         <div class="text-center mt-4">
           <router-link to=/Carrito>
-              <button class="btn btn-outline-success" type="button" @click="addtoCart">Agregar al Carrito</button>
+              <button class="btn btn-outline-success" type="button" @click="addtoCart">
+                Agregar al Carrito <i class="fa-solid fa-cart-shopping"></i>
+                </button>
           </router-link>    
         </div>
       </div>
