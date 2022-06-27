@@ -14,16 +14,16 @@
                     <label for="password">Contraseña</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
                 </div>
-                                <div class="mb-2"> 
+                <div class="mb-2"> 
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" v-model="form.nombre">
                 </div>
-                                <div class="mb-2"> 
-                    <label for="apellido">apellido</label>
+                <div class="mb-2"> 
+                    <label for="apellido">Apellido</label>
                     <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" v-model="form.apellido">
                 </div>
-                                <div class="mb-2"> 
-                    <label for="dni">dni</label>
+                <div class="mb-2"> 
+                    <label for="dni">Dni</label>
                     <input type="text" class="form-control" name="dni" id="dni" placeholder="Ingrese su dni" v-model="form.dni">
                 </div>
                 <div class="mb-2"> 
@@ -53,29 +53,25 @@ export default {
         }
     };
   },
-  props: {
-  },
- methods: 
-  { 
+  props: {},
+  methods: { 
     async mismoNombreUsuario(nombre){
-    const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios");
-    this.users = response.data;
-    const usuarioEncontrado = this.users.find(u => u.nombreUsuario == nombre);
-    return usuarioEncontrado
-  },
-
-  async registro(){
-
-    if(await this.mismoNombreUsuario(this.form.username) == undefined ){
-        const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
-        const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
-        this.usuario.id = response.data.id;
-    }else{
-        alert("No podes usar ese nombre de usuario")
+        const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios");
+        this.users = response.data;
+        const usuarioEncontrado = this.users.find(u => u.nombreUsuario == nombre);
+        return usuarioEncontrado
+    },
+    async registro(){
+        if(await this.mismoNombreUsuario(this.form.username) == undefined ){
+            const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
+            const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
+            usuario.id = response.data.id;
+            alert("Registro con exito")
+            this.$router.push({name: "Home"});
+        }else{
+            alert("No podes usar ese nombre de usuario")
+        }
     }
-
-  }
   },
 };
-
 </script>

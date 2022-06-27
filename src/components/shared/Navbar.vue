@@ -22,27 +22,28 @@
         <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search"  
           v-model="dataBusqueda" @keyup="busqueda">
       </form>
-  
-      <div >
-        <div class="d-flex">
-          <router-link class="link active me-2" to="/Login">
-            <input class="btn btn-outline-primary" type="submit" value="Ingresar"/>
-          </router-link>
 
-          <router-link class="link active me-2" to="/Registro">
-            <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
-          </router-link>
-        </div>
-      </div>
+      <div>
+        <div v-if="userLogueadoNombre">
+          <div class="d-flex">
+            <router-link class="link active me-2" to="/Login">
+              <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
+            </router-link>
 
-      <div >
-        <div class="d-flex">
-          <router-link class="link active me-2" to="/">
-            <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
-          </router-link>
+            <router-link class="link active me-2" to="/Registro">
+              <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
+            </router-link>
+          </div>
         </div>
 
-
+        <div v-else>
+          <div class="d-flex">
+            <p class="text-white d-flex me-2">Hola! {{userLogueadoNombre}}</p>
+            <router-link class="link active me-2" to="/">
+              <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
+            </router-link>
+          </div>
+        </div>
       </div>
 
     </div>                                
@@ -59,28 +60,37 @@ export default {
       dataBusqueda:"",
     };
   },
+  computed:{
+    userLogueadoNombre(){
+      let x;
+      if(localStorage.userLogged){
+        x = localStorage.userLogged
+      }
+      return x;
+    },
+    logeado(){
+      let ok = false;
+      // localStorage.logged = 1;
+      if(localStorage.logged != 0){
+        ok = true ;
+      }
+      return ok;
+    },
+  },
   methods: {
     busqueda() {
       if (!this.dataBusqueda) {
-        this.$router.push({
-          name: "Home",
-        });
+        this.$router.push({name: "Home",});
       }        
-      this.$router.push({
-        name: "Busqueda",
-        params: { nombre: this.dataBusqueda },
-      });
+      this.$router.push({name: "Busqueda",params: { nombre: this.dataBusqueda }});
     },
-     salir(){
-     
+    salir(){
       localStorage.logged = 0
-      
     }
-
   },
   created() {
-    
-    console.log("logged (navbar)", !this.logged);
+    console.log("logged (navbar)", this.logeado);
+    console.log("localstorage (navbar)", localStorage.logged);
   },
 };
 </script>

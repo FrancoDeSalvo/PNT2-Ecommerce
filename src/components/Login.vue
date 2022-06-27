@@ -15,12 +15,8 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
                 </div>
 
-        
-
-                <div class="mb-2 d-inline me-3"> 
-                    
+                <div class="mb-2 d-inline me-3">   
                     <button class="btn btn-primary text-white" type="submit">Ingresar</button>
-                    
                 </div>
 
                 <div class="mb-2 d-inline"> 
@@ -48,22 +44,27 @@ export default {
         }
     };
   },
-  props: {
-  },
-  methods: 
-  { 
+  props: {},
+  methods: { 
     async login() {
+      const user = await this.getUser();
+      if(user !== undefined){
+        localStorage.logged = 1;
+        localStorage.userLogged = user.nombreUsuario;
+        this.$router.push({name: "Home"});
+      }
+      else{
+        alert("usuario o contraseña incorrecto")
+      }
+      console.log("LocalStorage login", localStorage.logged)
+    //   console.log("LocalStorage login", localStorage.userLogged)
+    },  
+    async getUser(){
       const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios"); 
       this.users = response.data; 
       const x = this.users.find(u => u.nombreUsuario == this.form.username && u.password == this.form.password)
-      console.log(x)
-      if(x != undefined){
-          localStorage.logged = 1;
-      } else{
-          alert("usuario o contraseña incorrecto")
-      }
-      console.log("LocalStorage login", localStorage.logged)
-    },  
+      return x;
+    } 
   },
 };
 
