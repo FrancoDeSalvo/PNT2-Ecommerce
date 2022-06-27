@@ -55,27 +55,27 @@ export default {
   },
   props: {
   },
-  methods: 
+ methods: 
   { 
-  
-  },
-
-  async mismoNombreUsuario(nombre){
-    const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios"); 
+    async mismoNombreUsuario(nombre){
+    const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios");
     this.users = response.data;
-    return this.users.some(u => u.nombreUsuario == nombre);
+    const usuarioEncontrado = this.users.find(u => u.nombreUsuario == nombre);
+    return usuarioEncontrado
   },
 
   async registro(){
-    if(!this.mismoNombreUsuario(this.form.username)){
-    const usuario = { username: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
-    const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
-    this.usuario.id = response.data.id;    
+
+    if(await this.mismoNombreUsuario(this.form.username) == undefined ){
+        const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
+        const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
+        this.usuario.id = response.data.id;
     }else{
         alert("No podes usar ese nombre de usuario")
     }
-    
+
   }
+  },
 };
 
 </script>

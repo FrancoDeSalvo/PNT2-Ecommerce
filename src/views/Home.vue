@@ -20,6 +20,7 @@ export default {
     return {
       productos: [],
       categorias: [],
+
       // form: {
       //   nombre: null,
       // },

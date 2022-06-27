@@ -27,7 +27,7 @@
         <p class="card-text">{{producto.descripcion}}</p>
 
         <div class="text-center mt-4">
-              <button class="btn btn-outline-success" type="button">Agregar al Carrito</button>
+              <button class="btn btn-outline-success" type="button" @click="addtoCart">Agregar al Carrito</button>
         </div>
 
       </div>
@@ -50,6 +50,7 @@ export default {
       id: this.$route.params.id,
       producto: Object,
       disponible: "Disponible",
+      myVar: this.globalVar,
     };
   },
   methods: {
@@ -62,6 +63,38 @@ export default {
       if(this.producto.disponible){
         this.disponible = "No disponible";
       }
+    },
+    addtoCart(){
+       localStorage.cart = [this.producto.id]
+      // console.log(localStorage.cart)
+
+      // var array = [this.producto.id]
+
+      // localStorage.setItem('carrito', JSON.stringify(array));
+    // if(localStorage.carrito == null){
+    //    var a = JSON.parse(localStorage.getItem('carrito'));
+    //    console.log(a)
+    // }else{
+    //   console.log("no entro")
+    //   localStorage.cart = [this.producto.id]
+    // }
+
+
+  
+   this.myVar.push(this.producto)
+  console.log(this.myVar)
+
+    //  console.log("---")
+    // console.log($myGlobalVariable)
+
+    //  a.push(this.producto.id)
+
+    //   localStorage.setItem('cart', JSON.stringify(p));
+    //   var a = JSON.parse(localStorage.getItem('productos'));
+    //   console.log(a)
+
+    //   a.push[datosDeCadaEquipoRecuperado];
+    //   localStorage.setItem('myArray', JSON.stringify(a));
     }
   },
   created() {
