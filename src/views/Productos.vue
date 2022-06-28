@@ -15,14 +15,24 @@
   </div>
 
   <div class="container mt-4">
-      <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center" id="paginator">
-            <button :disabled="currentPage == 1" id="prev" class="page-item border border-2 mx-1" @click="prevPage"><i class="fa-solid fa-angle-left"></i></button>
-            <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2 mx-1" @click="nextPage"><i class="fa-solid fa-angle-right"></i></button>
-          </ul>
-      </nav>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center" id="paginator">
+        <button :disabled="currentPage == 1" id="prev" class="page-item border border-2 mx-1" @click="prevPage"><i class="fa-solid fa-angle-left"></i></button>
+        <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2 mx-1" @click="nextPage"><i class="fa-solid fa-angle-right"></i></button>
+      </ul>
+    </nav>
   </div>
-  
+
+  <!-- ADMIN -->
+  <div class="d-flex justify-content-center mt-5 mb-5" v-if="admin == 2">
+    <router-link to="/AgregarProducto" class="me-3">
+      <button class="btn btn-outline-primary" type="button">
+        Agregar Nuevo Producto <i class="fa-solid fa-plus"></i>
+      </button>
+    </router-link> 
+  </div>
+  <!-------------------------->
+
 </template>
 
 <script>
@@ -38,6 +48,7 @@ export default {
       currentPage: 1,
       categoria: this.$route.params.categoria,
       categoriaId: null,
+      admin: localStorage.logged,
     };
   },
   components: {
@@ -48,7 +59,10 @@ export default {
     productosData() {
       let data = [];
       for (let i = 0; i < this.productos.length; i++) {
-        if (this.productos[i].categoria == this.categoriaId) {
+        if(this.productos[i].categoria == this.categoriaId && this.admin == 2){
+          data.push(this.productos[i]);
+        }
+        else if (this.productos[i].categoria == this.categoriaId && !this.productos[i].eliminado) {
           data.push(this.productos[i]);
         } 
       }
@@ -70,7 +84,7 @@ export default {
     async getCategoria(page = `https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias?nombre=${this.categoria}`){
       const response = await axios.get(page); 
       const c = response.data;
-      this.categoriaId = c[0].id;
+      this.categoriaId = c[0].idCategoria;
     },
     prevPage(){
       this.currentPage--;
@@ -79,8 +93,8 @@ export default {
       this.currentPage++;
     },
   },
-  async created() { 
-     await this.loadProductos();
+  created() { 
+    this.loadProductos();
   },
 };
 </script>

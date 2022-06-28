@@ -8,11 +8,27 @@
     </div>
   </div>
 
+  <!-- ADMIN -->
+  <div class="d-flex justify-content-center mt-5 mb-5" v-if="admin == 2">
+    <router-link to="/AgregarCategoria" class="me-3">
+      <button class="btn btn-outline-primary" type="button">
+        Agregar Nueva Categoria <i class="fa-solid fa-plus"></i>
+      </button>
+    </router-link> 
+
+    <router-link to="/EliminarCategoria">
+      <button class="btn btn-outline-danger" type="button">
+        Eliminar Categoria <i class="fa-solid fa-trash-can"></i>
+      </button>
+    </router-link>    
+  </div>
+  <!-------------------------->
+
 </template>
 
 <script>
 import axios from "axios";
-import Categoria from "../components/shared/Categorias.vue";
+import Categoria from "../components/Categorias/Categorias.vue";
 
 export default {
   name: "HomeIndex",
@@ -20,6 +36,7 @@ export default {
     return {
       productos: [],
       categorias: [],
+      admin: localStorage.logged,
     };
   },
   components: {

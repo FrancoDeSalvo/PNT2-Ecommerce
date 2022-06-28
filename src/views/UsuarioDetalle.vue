@@ -24,7 +24,6 @@
         <h5 class="text-secondary mt-3">Dni</h5>
         <p class="card-text">{{this.usuario.dni}}</p>
 
-       
       </div>
 
     </div>
@@ -54,9 +53,6 @@ export default {
       this.usuario = response.data;
      
     },
-
-  
-   
   },
   async created() {
     await this.loadUser();
@@ -64,5 +60,4 @@ export default {
   },
 };
 
- 
 </script>

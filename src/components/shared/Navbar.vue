@@ -78,7 +78,6 @@ export default {
     },
     logeado(){
       let ok = false;
-      // localStorage.logged = 1;
       if(localStorage.logged != 0){
         ok = true ;
       }
@@ -96,9 +95,9 @@ export default {
       localStorage.logged = 0
     }
   },
-  created() {
-    console.log("logged (navbar)", this.logeado);
-    console.log("localstorage (navbar)", localStorage.logged);
-  },
+  // created() {
+  //   console.log("logged (navbar)", this.logeado);
+  //   console.log("localstorage (navbar)", localStorage.logged);
+  // },
 };
 </script>

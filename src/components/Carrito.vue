@@ -15,10 +15,10 @@
           <!-- PAGINATION -->
           <div class="container mt-4">
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center" id="paginator">
-                  <button :disabled="currentPage == 1" id="prev" class="page-item border border-2 mx-1" @click="prevPage"><i class="fa-solid fa-angle-left"></i></button>
-                  <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2 mx-1" @click="nextPage"><i class="fa-solid fa-angle-right"></i></button>
-                </ul>
+              <ul class="pagination justify-content-center" id="paginator">
+                <button :disabled="currentPage == 1" id="prev" class="page-item border border-2 mx-1" @click="prevPage"><i class="fa-solid fa-angle-left"></i></button>
+                <button :disabled="productosData.length < perPage" id="next" class="page-item border border-2 mx-1" @click="nextPage"><i class="fa-solid fa-angle-right"></i></button>
+              </ul>
             </nav>
         </div>
 
@@ -35,7 +35,9 @@
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal1" @click="vaciarCarrito()"> Generar compra </button>
                 </router-link>
 
-                <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
+                <router-link to="/Carrito">
+                  <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
+                </router-link>
               </div>
 
             <!-- </div> -->
@@ -64,13 +66,6 @@
       </div>
     </div>
   </section>
-<!-- <div class="container">
-    <div class="row mb-4 text-dark" id="cards">
-      <div :key="c.id" v-for="c in myVar" class="col-4 mt-4">
-        <ItemCarrito :producto="c" />
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -96,13 +91,7 @@ export default {
   },
   computed:{
     productosData() {
-      let data = this.items;
-      // for (let i = 0; i < this.productos.length; i++) {
-      //   if (this.productos[i].categoria == this.categoriaId) {
-      //     data.push(this.productos[i]);
-      //   } 
-      // }
-      data = data.slice(
+      let data = this.items.slice(
         (this.currentPage - 1) * this.perPage,
         this.currentPage * this.perPage
       );

@@ -59,8 +59,6 @@ export default {
       const response = await axios.get(url);
       this.usuarios = response.data;
       console.log(this.usuarios)
-      
-      
     },
 
     prevPage(){

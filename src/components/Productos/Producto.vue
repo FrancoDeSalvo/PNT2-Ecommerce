@@ -28,7 +28,7 @@ export default {
   },
   methods:{
     disponibilidad(){
-      if(this.producto.disponible){
+      if(this.producto.eliminado){
         this.disponible = "No disponible";
       }
     }

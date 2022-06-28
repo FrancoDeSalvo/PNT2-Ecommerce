@@ -24,12 +24,28 @@
         <h5 class="text-secondary mt-3">Descripcion</h5>
         <p class="card-text">{{producto.descripcion}}</p>
 
-        <div class="text-center mt-4">
-          <router-link to=/Carrito>
+        <div class="d-flex justify-content-center mt-4">
+            <router-link to="/">
               <button class="btn btn-outline-success" type="button" @click="addtoCart">
                 Agregar al Carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-          </router-link>    
+              </button>
+            </router-link>   
+
+            <!-- ADMIN -->
+            <router-link :to=urlModificar class="mx-2" v-if="admin == 2">
+              <button class="btn btn-outline-warning" type="button">
+                  Modificar <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </router-link>  
+
+            <router-link :to=urlHabilitacion v-if="admin == 2" class="me-2">
+              <button class="btn btn-outline-primary" type="button">
+                Habilitar <i class="fa-solid fa-check"></i> |
+                Deshabilitar <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </router-link>
+            <!-------------------------->  
+
         </div>
       </div>
 
@@ -52,7 +68,10 @@ export default {
       id: this.$route.params.id,
       producto: Object,
       disponible: "Disponible",
-      productos: []
+      productos: [],
+      admin: localStorage.logged,
+      urlModificar: `/EditarProducto/${this.$route.params.id}`,
+      urlHabilitacion: `/HabilitacionProducto/${this.$route.params.id}`,
     };
   },
   methods: {
@@ -73,7 +92,7 @@ export default {
       await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
     },
     async disponibilidad(){
-      if(this.producto.disponible){
+      if(this.producto.eliminado){
         this.disponible = "No disponible";
       }
     },
