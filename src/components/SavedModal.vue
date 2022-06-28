@@ -5,26 +5,47 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Carrito Confirmado</h5>
+        <h5 v-show= "!vacio"  class="modal-title">Carrito Confirmado</h5>
+        <h5 v-show= "vacio" class="modal-title">Carrito Vacio</h5>
+        <button v-show= "vacio" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="modal-body">
+      <div v-show= "!vacio" class="modal-body">
         <img class="check" src="../assets/succses.png" alt="" />
         <p>Gracias por elegirnos</p>
       </div>
-      <div class="modal-footer">
-        <router-link to="/" class="mx-2">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </router-link>
+
+      <div v-show= "vacio" class="modal-body">
+        <img class="check" src="../assets/carrito.png" alt="" />
+        <p> Añada productos al carrito </p>
       </div>
+
+      <div v-show= "!vacio" class="modal-footer">
+        <router-link to="/" class="mx-2">
+                  <button v-show= "!vacio" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </router-link>
+  
+      </div>
+      
     </div>
   </div>
 </div>
-  
   </transition>
 </template>
 
 <script>
-export default {}
+export default {
+
+  data() {
+    return {
+    
+    };
+  },
+  props: {
+    vacio: Boolean,
+  },
+}
 </script>
 
 <style scoped>

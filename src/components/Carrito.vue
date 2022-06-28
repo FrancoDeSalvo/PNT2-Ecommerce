@@ -44,7 +44,7 @@
   </div>
 
   <div>
-    <SavedModal v-show="showModal" @close-modal="showModal = false" />
+    <SavedModal :vacio= "this.carritoVacio" v-show="showModal" @close-modal="showModal = false" />
   </div>
 
 </template>
@@ -64,6 +64,7 @@ export default {
       perPage: 5,
       currentPage: 1,
       showModal: false,
+      carritoVacio: true,
     };
   },
   props: {
@@ -142,6 +143,9 @@ export default {
     },
 
     finalizarCarrito(){
+       if(this.items.length >= 1){
+         this.carritoVacio = false
+      }
       this.showModal = true
       this.vaciarCarrito()
     },
