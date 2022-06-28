@@ -17,15 +17,25 @@ import Habilitacion from "../components/Productos/Habilitacion.vue"
 import ProductoDetalle from "../views/ProductoDetalle.vue";
 
 //-- USUARIOS --
-import Usuarios from "../views/Usuarios.vue"
-import Eliminar from "../components/Usuarios/Eliminar.vue"
+import AdministrarUsuarios from "../views/Usuarios.vue"
+import EliminarUsuario from "../components/Usuarios/Eliminar.vue"
 import EditarUsuario from "../components/Usuarios/Editar.vue"
 import UsuarioDetalle from "../views/UsuarioDetalle.vue"
 
 //-------------------------------------------------------------------------------------
 const logged = () => {
-    console.log("index.js localStorage.logged", localStorage.logged)
+    // console.log("index.js localStorage.logged user", localStorage.logged)
     if (localStorage.logged == 0 || !localStorage.logged) {
+        return { path: '/Login', name: 'Login', component: Login }
+    }
+}
+
+const admin = () => {
+    // console.log("index.js localStorage.logged admin", localStorage.logged)
+    if (localStorage.logged == 2) {
+        return true
+    }
+    else{
         return { path: '/Login', name: 'Login', component: Login }
     }
 }
@@ -73,51 +83,59 @@ const routes = [
         path: '/AgregarCategoria', 
         name: 'AgregarCategoria',
         component: AgregarCategoria,
-        beforeEnter: [logged]
+        beforeEnter: [admin]
     },
     {
         path: '/EliminarCategoria', 
         name: 'EliminarCategoria',
         component: EliminarCategoria,
-        beforeEnter: [logged]
+        beforeEnter: [admin]
     },
     {
         path: '/AgregarProducto', 
         name: 'AgregarProducto',
         component: Agregar,
-        beforeEnter: [logged]
+        beforeEnter: [admin]
     },
     {
         path: '/EditarProducto/:id', 
         name: 'EditarProducto',
         component: Editar,
-        beforeEnter: [logged]
+        beforeEnter: [admin]
     },
     {
         path: '/HabilitacionProducto/:id', 
         name: 'HabilitacionProducto',
         component: Habilitacion,
+        beforeEnter: [admin]
+    },
+    {
+        path: '/AdministrarUsuarios', 
+        name: 'AdministrarUsuarios',
+        component: AdministrarUsuarios,
+        beforeEnter: [admin]
+    },
+    {
+        path: '/EditarUsuario/:id',
+        name: 'EditarUsuario',
+        component: EditarUsuario,
         beforeEnter: [logged]
     },
     {
-        path: '/Usuarios', 
-        name: 'Usuarios',
-        component: Usuarios,
-        
-    },
-    {
-        path: '/Editar/:id',
-        name: 'Editar',
-        component: EditarUsuario
-    },
-    {
-        path: '/Eliminar/:id',
-        name: 'Eliminar',
-        component: Eliminar
+        path: '/EliminarUsuario/:id',
+        name: 'EliminarUsuario',
+        component: EliminarUsuario,
+        beforeEnter: [admin]
     },
     {
         path: '/UsuarioDetalle/:id', 
         name: 'UsuarioDetalle',
+        component: UsuarioDetalle,
+        beforeEnter: [logged]
+    },
+    {
+        path: '/MiCuenta/:id', 
+        name: 'MiCuenta',
         component: UsuarioDetalle,
         beforeEnter: [logged]
     },

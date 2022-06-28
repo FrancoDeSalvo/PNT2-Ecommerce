@@ -1,6 +1,10 @@
 <template>
     
-         <input class="btn btn-danger" type="submit" value="BORRAR USUARIO " @click="eliminarUsuario()"/>
+  <input class="btn btn-danger" type="submit" value="BORRAR USUARIO " @click="eliminarUsuario()"/>
+
+  <div class="container text-center mb-4 mt-3">
+    <router-link to="/">Home</router-link>
+  </div>
 
 </template>
 

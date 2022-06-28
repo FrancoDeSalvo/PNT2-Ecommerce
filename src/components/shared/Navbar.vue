@@ -29,23 +29,25 @@
         <router-link class="link active me-2" to="/Login">
           <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
         </router-link>
-
         <router-link class="link active me-2" to="/Registro">
           <input class="btn btn-outline-secondary" type="submit" value="Registrarse" />
         </router-link>
       </div>
 
       <div class="d-flex" v-else>
-        <router-link class="link active me-2" to="/Usuarios" v-if="logged == 2"> 
-          <input class="btn btn-outline-warning" type="submit" value="Administrar usuarios" >
+        <router-link class="link active me-2" to="/AdministrarUsuarios" v-if="logged == 2"> 
+          <button class="btn btn-outline-warning" type="submit" value="Usuarios">
+            Usuarios <i class="fa-solid fa-users"></i>
+          </button>
         </router-link>
-
+        <router-link class="link active me-2" :to="urlMiCuenta"> 
+          <button class="btn btn-outline-warning" type="submit" value="Mi Cuenta">
+            {{userLogueadoNombre}} <i class="fa-solid fa-user"></i>
+          </button>
+        </router-link>
         <router-link class="link active me-2" to="/Login"> 
           <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
         </router-link>
-        <div class="position-absolute top-50 start-50 translate-middle align-middle">
-          <p class="text-white d-flex me-2 ">Hola! {{userLogueadoNombre}}</p>
-        </div>
       </div>
 
     </div>                                
@@ -58,14 +60,10 @@ export default {
   name: "NavBar",
   data() {
     return {
-      //url: `/Editar/${this.usuario.id}`,
+      urlMiCuenta: `/MiCuenta/${localStorage.userLogged}`,
       logged: localStorage.logged,
       dataBusqueda:"",
     };
-  },
-
-  props:{
-    usuario:Object,
   },
   computed:{
     userLogueadoNombre(){
@@ -75,20 +73,20 @@ export default {
       }
       return x;
     },
-    logeado(){
-      let ok = false;
-      if(localStorage.logged != 0){
-        ok = true ;
-      }
-      return ok;
-    },
+    // logeado(){
+    //   let ok = false;
+    //   if(localStorage.logged != 0){
+    //     ok = true ;
+    //   }
+    //   return ok;
+    // },
   },
   methods: {
     busqueda() {
       if (!this.dataBusqueda) {
-        this.$router.push({name: "Home",});
+        this.$router.push({name: "Home"});
       }        
-      this.$router.push({name: "Busqueda",params: { nombre: this.dataBusqueda }});
+      this.$router.push({name: "Busqueda", params: { nombre: this.dataBusqueda }});
     },
     salir(){
       localStorage.logged = 0

@@ -14,6 +14,10 @@
 
     </div>
   </section>
+
+  <div class="container text-center mb-4 mt-3">
+    <router-link to="/">Home</router-link>
+  </div>
 </template>
 
 

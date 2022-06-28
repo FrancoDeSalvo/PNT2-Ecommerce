@@ -88,7 +88,7 @@ export default {
       let ok = false;
       if(admin && admin.admin){
         localStorage.logged = 2;
-        localStorage.adminLogged = admin.id;
+        localStorage.userLogged = admin.id;
         localStorage.userLoggedName = `admin ${admin.nombreUsuario}`;
         ok = true; 
       }

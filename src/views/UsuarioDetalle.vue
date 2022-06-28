@@ -3,36 +3,41 @@
   <NavBar></NavBar>
 
   <div class="text-center">
-      <h3 class="d-block text-white bg-secondary row rounded pt-2 pb-2">{{ usuario.nombreUsuario }}</h3>
+      <h4 class="d-block text-white bg-secondary row rounded pt-2 pb-2">
+        Detalles de mi cuenta
+      </h4>
   </div>
 
-  <div class="container mt-3">
+  <div class="container mt-4">
     <div class="row">
 
-      <div class="col-6 text-center mt-5">
-        <img src= "https://thumbs.dreamstime.com/b/icono-de-la-persona-en-el-fondo-blanco-111394209.jpg" class="card-img-top" alt="Responsive image" style="width: 70%"/>
+      <div class="col-6 text-center">
+        <img :src= "usuario.avatar" class="card-img-top" alt="Responsive image" style="width: 50%"/>
       </div>
 
       <div class="col-6">
         <h5 class="text-secondary">Nombre de usuario</h5>
-        <p class="card-text">{{this.usuario.nombreUsuario}}</p>
+        <p class="card-text">{{usuario.nombreUsuario}}</p>
 
         <h5 class="text-secondary">Nombre</h5>
-        <p class="card-text">{{this.usuario.nombre}}</p>
+        <p class="card-text">{{usuario.nombre}}</p>
 
         <h5 class="text-secondary">Apellido</h5>
-        <p class="card-text">{{this.usuario.apellido}}</p>
+        <p class="card-text">{{usuario.apellido}}</p>
 
         <h5 class="text-secondary mt-3">Dni</h5>
-        <p class="card-text">{{this.usuario.dni}}</p>
-
+        <p class="card-text">{{usuario.dni}}</p>
       </div>
 
     </div>
   </div>
 
-  <div class="container text-center mb-4 mt-5">
-    <router-link to="/">Home</router-link>
+  <div class="d-flex justify-content-center mt-5">
+    <router-link :to=urlEditarUsuario>
+      <button class="btn btn-outline-warning" type="button">
+        Editar mi cuenta <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+    </router-link>   
   </div>
 
 </template>
@@ -47,7 +52,8 @@ export default {
     return {
       id: this.$route.params.id,
       usuario: Object,
-    usuarios: []
+      usuarios: [],
+      urlEditarUsuario: `/EditarUsuario/${this.$route.params.id}`
     };
   },
   components:{

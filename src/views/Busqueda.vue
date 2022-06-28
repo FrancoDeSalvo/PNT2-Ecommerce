@@ -1,5 +1,7 @@
 <template>
 
+  <NavBar></NavBar>
+
   <div class="container">
     <div class="row mb-4 text-dark" id="cards" >
       <div :key="p.id" v-for="p in productosData" class = "col-4 mt-4">
@@ -23,6 +25,7 @@
 <script>
 import axios from "axios";
 import Producto from "../components/Productos/Producto.vue";
+import NavBar from "../components/shared/Navbar.vue";
 
 export default {
   name: "BusquedaProducto",
@@ -34,7 +37,7 @@ export default {
     };
   },
   components: {
-    Producto
+    Producto, NavBar
   },
   computed:{
     productosData() {
