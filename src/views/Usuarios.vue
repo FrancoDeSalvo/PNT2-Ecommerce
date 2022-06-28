@@ -1,5 +1,7 @@
 <template>
 
+  <NavBar></NavBar>
+
   <div class="container">
     <div class="row mb-4 text-dark" id="cards" >
       <div :key="u.id" v-for="u in usuariosData" class = "col-4 mt-4">
@@ -22,6 +24,7 @@
 <script>
 import axios from "axios";
 import Usuario from "../components/Usuarios/Usuario.vue";
+import NavBar from "../components/shared/Navbar.vue";
 
 export default {
   name: "UsuariosX",
@@ -36,7 +39,7 @@ export default {
     };
   },
   components: {
-    Usuario
+    Usuario, NavBar
   },
 
   computed:{

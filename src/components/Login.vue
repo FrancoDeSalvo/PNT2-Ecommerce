@@ -1,27 +1,27 @@
 <template>
   <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3">
+    <div class="card col-sm-4 p-3 mt-5 border border-4">
 
-      <div class="mb-3">
+      <div class="mb-3 text-center">
           <h4>Ingresar</h4>
       </div>
 
       <div class="mb-2">
         <form v-on:submit.prevent="login">
           
-            <div class="mb-2"> 
+            <div class="mb-2 text"> 
                 <label for="nombre">Nombre de Usuario</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" v-model="form.username">
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre de usuario" v-model="form.username">
             </div>
-            <div class="mb-3"> 
+            <div class="mb-4"> 
                 <label for="password">Contraseña</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
             </div>
 
-            <div class="mb-2 d-inline me-3">   
+            <div class="d-block mb-4 text-center">   
                 <button class="btn btn-primary text-white" type="submit">Ingresar</button>
             </div>
-            <div class="mb-2 d-inline"> 
+            <div class="text-center"> 
                 <router-link class="link active" to="/Registro">No tienes cuenta? Registrate</router-link>
             </div>
 
@@ -30,6 +30,11 @@
 
     </div>
   </section>
+
+  <div class="container text-center mb-4 mt-5">
+    <router-link to="/">Home</router-link>
+  </div>
+
 </template>
 
 <script>
@@ -49,9 +54,9 @@ export default {
   props: {},
   methods: { 
     async login() {
-      await this.loginUser();
-      await this.loginAdmin();
-      if(localStorage.logged == 1 || localStorage.logged == 2){
+      const user = await this.loginUser();
+      const admin = await this.loginAdmin();
+      if(user || admin){
         this.$router.push({name: "Home"});
       }
       else{
@@ -68,20 +73,26 @@ export default {
 
     async loginUser() {
       const user = await this.getUser();
-      if(user.nombreUsuario == this.form.username && !user.admin){
+      let ok = false;
+      if(user && !user.admin){
         localStorage.logged = 1;
         localStorage.userLogged = user.id;
         localStorage.userLoggedName = user.nombreUsuario;
+        ok = true;
       }
+      return ok;
     },  
 
     async loginAdmin(){
       const admin = await this.getUser();
-      if(admin.nombreUsuario == this.form.username && admin.admin){
+      let ok = false;
+      if(admin && admin.admin){
         localStorage.logged = 2;
         localStorage.adminLogged = admin.id;
         localStorage.userLoggedName = `admin ${admin.nombreUsuario}`;
+        ok = true; 
       }
+      return ok;
     }
   },
 };

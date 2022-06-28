@@ -1,5 +1,7 @@
 <template>
 
+  <NavBar></NavBar>
+
   <div class="text-center">
       <h3 class="d-block text-white bg-secondary row rounded pt-2 pb-2">{{ producto.nombre }}</h3>
   </div>
@@ -60,6 +62,7 @@
 
 <script>
 import axios from "axios";
+import NavBar from "../components/shared/Navbar.vue";
 
 export default {
   name: "ProductoDetalle",
@@ -73,6 +76,9 @@ export default {
       urlModificar: `/EditarProducto/${this.$route.params.id}`,
       urlHabilitacion: `/HabilitacionProducto/${this.$route.params.id}`,
     };
+  },
+  components:{
+    NavBar
   },
   methods: {
     async loadProducto() {
@@ -103,37 +109,4 @@ export default {
   },
 };
 
- 
-       //localStorage.cart = [this.producto.id]
-      // console.log(localStorage.cart)
-
-      // var array = [this.producto.id]
-
-      // localStorage.setItem('carrito', JSON.stringify(array));
-    // if(localStorage.carrito == null){
-    //    var a = JSON.parse(localStorage.getItem('carrito'));
-    //    console.log(a)
-    // }else{
-    //   console.log("no entro")
-    //   localStorage.cart = [this.producto.id]
-    // }
-
-
-  
-   //this.myVar.push(this.producto)
-  //console.log(this.myVar)
-
-    //  console.log("---")
-    // console.log($myGlobalVariable)
-
-    //  a.push(this.producto.id)
-
-    //   localStorage.setItem('cart', JSON.stringify(p));
-    //   var a = JSON.parse(localStorage.getItem('productos'));
-    //   console.log(a)
-
-    //   a.push[datosDeCadaEquipoRecuperado];
-    //   localStorage.setItem('myArray', JSON.stringify(a));
-    //}
 </script>
-

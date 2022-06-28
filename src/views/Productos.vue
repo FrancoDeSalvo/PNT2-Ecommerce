@@ -1,5 +1,7 @@
 <template>
 
+  <NavBar></NavBar>
+
   <div>
     <div class="text-center">
       <h1 class="d-block text-white bg-success row rounded pt-2 pb-2">- {{ categoria }} -</h1><br>
@@ -38,6 +40,7 @@
 <script>
 import axios from "axios";
 import Producto from "../components/Productos/Producto.vue";
+import NavBar from "../components/shared/Navbar.vue";
 
 export default {
   name: "ProductosX",
@@ -52,7 +55,7 @@ export default {
     };
   },
   components: {
-    Producto
+    Producto, NavBar
   },
 
   computed:{

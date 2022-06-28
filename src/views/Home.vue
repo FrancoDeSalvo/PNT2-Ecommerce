@@ -1,5 +1,7 @@
 <template>
 
+  <NavBar></NavBar>
+
   <div class="container">
     <div class="row mb-4 text-dark" id="cards">
       <div :key="c.id" v-for="c in categorias" class="col-4 mt-4">
@@ -29,6 +31,7 @@
 <script>
 import axios from "axios";
 import Categoria from "../components/Categorias/Categorias.vue";
+import NavBar from "../components/shared/Navbar.vue";
 
 export default {
   name: "HomeIndex",
@@ -40,6 +43,7 @@ export default {
     };
   },
   components: {
+    NavBar,
     Categoria, 
   },
 

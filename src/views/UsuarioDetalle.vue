@@ -1,5 +1,7 @@
 <template>
 
+  <NavBar></NavBar>
+
   <div class="text-center">
       <h3 class="d-block text-white bg-secondary row rounded pt-2 pb-2">{{ usuario.nombreUsuario }}</h3>
   </div>
@@ -37,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import NavBar from "../components/shared/Navbar.vue";
 
 export default {
   name: "UsuarioDetalle",
@@ -46,6 +49,9 @@ export default {
       usuario: Object,
     usuarios: []
     };
+  },
+  components:{
+    NavBar
   },
   methods: {
     async loadUser() {

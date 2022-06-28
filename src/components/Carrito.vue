@@ -22,23 +22,26 @@
             </nav>
         </div>
 
-          <div class="card mb-4 text-center">
-              
-              <h4 class="fw-normal mb-0 text-black">Total $ {{this.total}}</h4>
-              
-              <div class="d-flex mt-2 mb-2 mx-2">
-                <div class="save-btn">
-                    <button  type="button" class="btn btn-success" @click=" finalizarCarrito()">Generar compra</button>
-                  </div>
-                <router-link to="/Carrito">
-                  <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
-                </router-link>
+        <div class="card mb-4 text-center">
+            <h4 class="fw-normal mb-0 text-black">Total $ {{this.total}}</h4>
+            <div class="d-flex mt-2 mb-2 mx-2">
+              <div class="save-btn">
+                <button  type="button" class="btn btn-success" @click=" finalizarCarrito()">Generar compra</button>
               </div>
-          </div>
+              <router-link to="/Carrito">
+                <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
+              </router-link>
+            </div>
+        </div>
+
         </div>
       </div>
     </div>
   </section>
+
+  <div class="container text-center mb-4 mt-5">
+    <router-link to="/">Home</router-link>
+  </div>
 
   <div>
     <SavedModal v-show="showModal" @close-modal="showModal = false" />

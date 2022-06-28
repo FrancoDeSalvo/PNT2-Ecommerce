@@ -1,14 +1,14 @@
 <template>
-     <section class="d-flex justify-content-center mt-4 text-info">
-        <div class="card col-sm-6 p-3">
-        <div class="mb-3">
-            <h4>Registrarse</h4>
+     <section class="d-flex justify-content-center mt-4 text-info ">
+        <div class="card col-sm-6 p-3 border border-4">
+        <div class="mb-3 text-center">
+            <h4>Registrate!</h4>
         </div>
         <div class="mb-2">
             <form v-on:submit.prevent="registro">
-                <div class="mb-2"> 
+                <div class=""> 
                     <label for="nombreUsuario">Nombre de Usuario</label>
-                    <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese su nombre de usuario" v-model="form.username">
+                    <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese nombre de usuario" v-model="form.username">
                 </div>
                 <div class="mb-2"> 
                     <label for="password">Contraseña</label>
@@ -22,20 +22,26 @@
                     <label for="apellido">Apellido</label>
                     <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" v-model="form.apellido">
                 </div>
-                <div class="mb-2"> 
+                <div class="mb-4"> 
                     <label for="dni">Dni</label>
                     <input type="text" class="form-control" name="dni" id="dni" placeholder="Ingrese su dni" v-model="form.dni">
                 </div>
-                <div class="mb-2 d-inline me-3"> 
-                    <button class="btn btn-primary text-white" type="submit">Registrarse</button>
+
+                <div class="mb-3 text-center"> 
+                    <button class="btn btn-success text-white" type="submit">Crea tu cuenta!</button>
                 </div>
-                <div class="mb-2 d-inline"> 
+                <div class="text-center"> 
                     <router-link class="link active" to="/Login">Ya tienes cuenta? Iniciar sesion</router-link>
                 </div>
+
             </form>
         </div>
         </div>
     </section>
+
+    <div class="container text-center mb-4 mt-3">
+        <router-link to="/">Home</router-link>
+    </div>
 
 </template>
 
