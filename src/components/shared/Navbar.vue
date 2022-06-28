@@ -19,10 +19,11 @@
 
         </ul>
       </div>
-
       <form class="d-flex me-2" v-on:submit.prevent>
-        <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search"  
-          v-model="dataBusqueda" @keyup="busqueda">
+        <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search" v-model="dataBusqueda">
+        <button class="btn btn-outline-light" type="submit" @click="busqueda()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
       </form>
 
       <div class="d-flex" v-if="logged == 0">
@@ -56,6 +57,8 @@
 </template>
 
 <script>
+// import axios from "axios";
+
 export default {
   name: "NavBar",
   data() {
@@ -63,6 +66,7 @@ export default {
       urlMiCuenta: `/MiCuenta/${localStorage.userLogged}`,
       logged: localStorage.logged,
       dataBusqueda:"",
+      // urlBusqueda: `//`
     };
   },
   computed:{
@@ -73,13 +77,6 @@ export default {
       }
       return x;
     },
-    // logeado(){
-    //   let ok = false;
-    //   if(localStorage.logged != 0){
-    //     ok = true ;
-    //   }
-    //   return ok;
-    // },
   },
   methods: {
     busqueda() {
@@ -87,6 +84,8 @@ export default {
         this.$router.push({name: "Home"});
       }        
       this.$router.push({name: "Busqueda", params: { nombre: this.dataBusqueda }});
+      // const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.dataBusqueda}`)
+      // const producto = response.data
     },
     salir(){
       localStorage.logged = 0

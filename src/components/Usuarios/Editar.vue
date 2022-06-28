@@ -88,17 +88,6 @@ export default {
             alert("Usuario invalido")
         }
     },
-
-    // async usuarioSinCambios(user){
-    //     if(user){
-    //         this.form.username = user.nombreUsuario
-    //         this.form.password = user.password
-    //         this.form.nombre = user.nombre
-    //         this.form.apellido = user.apellido
-    //         this.form.profilePic = user.avatar
-    //     }
-    // }
-
     },
     async created(){
         await this.traerUsuario()
