@@ -43,7 +43,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "AgregarX",
+  name: "EditarX",
   data() {
     return {
         

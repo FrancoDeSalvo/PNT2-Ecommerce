@@ -52,7 +52,8 @@ export default {
             password: null,
             nombre:null,
             apellido:null,
-            dni:null
+            dni:null,
+            
         }
     };
   },
@@ -66,7 +67,7 @@ export default {
     },
     async registro(){
         if(await this.mismoNombreUsuario(this.form.username) == undefined ){
-            const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random() };
+            const usuario = { nombreUsuario: this.form.username, password:this.form.password, nombre: this.form.nombre, apellido: this.form.apellido, dni:this.form.dni, id: Math.random(), admin:false};
             const response = await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios", usuario);
             usuario.id = response.data.id;
             this.postCarrito(usuario);

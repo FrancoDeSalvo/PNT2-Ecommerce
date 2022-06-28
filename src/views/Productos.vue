@@ -79,8 +79,8 @@ export default {
       this.currentPage++;
     },
   },
-  created() { 
-    this.loadProductos();
+  async created() { 
+     await this.loadProductos();
   },
 };
 </script>

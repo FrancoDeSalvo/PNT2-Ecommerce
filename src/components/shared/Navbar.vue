@@ -41,6 +41,13 @@
           <input class="btn btn-outline-danger" type="submit" value="Salir" @click="salir()"/>
         </router-link>
       </div>
+      <div class="d-flex">
+        <!--<p class="text-white d-flex me-2">Hola! {{userLogueadoNombre}}</p>-->
+        <router-link class="link active me-2" to="/Usuarios"> 
+          <input class="btn btn-outline-warning" type="submit" value="Administrar usuarios" >
+        </router-link>
+      </div>
+     
 
     </div>                                
   </nav>
@@ -52,9 +59,14 @@ export default {
   name: "NavBar",
   data() {
     return {
+      //url: `/Editar/${this.usuario.id}`,
       logged: localStorage.logged,
       dataBusqueda:"",
     };
+  },
+
+  props:{
+    usuario:Object,
   },
   computed:{
     userLogueadoNombre(){

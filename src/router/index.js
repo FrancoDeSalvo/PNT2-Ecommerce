@@ -6,6 +6,10 @@ import Productos from "../views/Productos.vue";
 import Login from "../components/Login.vue"
 import Registro from "../components/Registro.vue"
 import Busqueda from "../views/Busqueda.vue"
+import Usuarios from "../views/Usuarios.vue"
+import Eliminar from "../components/Usuarios/Eliminar.vue"
+import EditarUsuario from "../components/Usuarios/Editar.vue"
+import UsuarioDetalle from "../views/UsuarioDetalle.vue"
 
 const logged = () => {
     console.log("index.js localStorage.logged")
@@ -35,6 +39,12 @@ const routes = [
         beforeEnter: [logged]
     },
     {
+        path: '/UsuarioDetalle/:id', 
+        name: 'UsuarioDetalle',
+        component: UsuarioDetalle,
+        beforeEnter: [logged]
+    },
+    {
         path: '/Login', 
         name: 'Login',
         component: Login
@@ -53,7 +63,23 @@ const routes = [
         path: '/Busqueda/:nombre', 
         name: 'Busqueda',
         component: Busqueda,
-    }
+    },
+    {
+        path: '/Usuarios', 
+        name: 'Usuarios',
+        component: Usuarios,
+        
+    },
+    {
+        path: '/Editar/:id',
+        name: 'Editar',
+        component: EditarUsuario
+    },
+    {
+        path: '/Eliminar/:id',
+        name: 'Eliminar',
+        component: Eliminar
+    },
 ];
 
 const router = createRouter({
