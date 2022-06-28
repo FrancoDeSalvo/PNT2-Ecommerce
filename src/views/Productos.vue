@@ -27,7 +27,7 @@
 
 <script>
 import axios from "axios";
-import Producto from "../components/Producto.vue";
+import Producto from "../components/Productos/Producto.vue";
 
 export default {
   name: "ProductosX",
