@@ -12,18 +12,6 @@
         <p class="lead fw-normal mb-2">{{producto.nombre}}</p>
       </div>
       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-        <!-- <button class="btn btn-link px-2"
-          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-          <i class="fas fa-minus"></i>
-        </button>
-
-        <input id="form1" min="0" name="quantity" value="1" type="number"
-          class="form-control form-control-sm" />
-
-        <button class="btn btn-link px-2"
-          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-          <i class="fas fa-plus"></i>
-        </button> -->
         <p class="lead fw-normal mb-2">Cantidad: {{producto.occurrence}}</p>
       </div>
 
@@ -42,26 +30,11 @@
         </div>
         <router-link class="link active" :to= url>Volver al detalle del producto</router-link>
       </div>
-<!-- 
-      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-      </div> -->
+
 
     </div>
   </div>
 </div>
-
-<!-- <div class="row justify-content-center">
-    <div class="card text-center" style="width: 18rem;">
-
-        <img :src= "producto.img" class="card-img-top" alt="Responsive image" style="width: 70%"/>
-        <h5 class="card-title"> {{producto.nombre}}</h5>
-      <div class="card-body">
-        <p class="card-text">Precio: ${{producto.precio}}</p>
-    
-      </div>
-    </div>          
-  </div> -->
 
 </template> 
 

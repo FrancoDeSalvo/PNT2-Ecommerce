@@ -12,12 +12,12 @@
         </button>
       </div>
       <div v-show= "!vacio" class="modal-body">
-        <img class="check" src="../assets/succses.png" alt="" />
+        <img class="check" src="../../assets/succses.png" alt="" />
         <p>Gracias por elegirnos</p>
       </div>
 
       <div v-show= "vacio" class="modal-body">
-        <img class="check" src="../assets/carrito.png" alt="" />
+        <img class="check" src="../../assets/carrito.png" alt="" />
         <p> Añada productos al carrito </p>
       </div>
 

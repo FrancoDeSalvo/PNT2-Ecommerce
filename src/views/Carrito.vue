@@ -1,5 +1,5 @@
 <template>
-  <section class="h-100" style="background-color: #eee;">
+  <section class="h-100">
     <div class="container h-100 pt-3">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-10">
@@ -31,7 +31,7 @@
                 <button type="button" class="btn btn-success" @click=" finalizarCarrito()">Generar compra</button>
               </div>
               <div class="d-inline mx-1">
-                <router-link to="/Carrito" >
+                <router-link to="/" >
                   <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
                 </router-link>              
               </div>
@@ -42,8 +42,12 @@
       </div>
     </div>
 
-    <div class="container text-center pb-4 mt-2">
-      <router-link to="/">Home</router-link>
+     <div class="container text-center pb-4 mt-2">
+      <router-link to="/">
+        <button type="button" class="btn btn-warning"> Home
+        <i class="fas fa-home"></i>
+      </button>
+      </router-link>
     </div>
   </section>
 
@@ -54,8 +58,8 @@
 </template>
 
 <script>
-import ItemCarrito from "../components/ItemCarrito.vue";
-import SavedModal from '../components/SavedModal.vue'
+import ItemCarrito from "../components/Carrito/ItemCarrito.vue";
+import SavedModal from '../components/Carrito/SavedModal.vue'
 import axios from "axios";
 export default {
   name: "CarritoProductos",

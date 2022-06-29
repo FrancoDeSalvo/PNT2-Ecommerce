@@ -29,8 +29,12 @@
         </div>
     </section>
 
-    <div class="container text-center mt-4 mb-4">
-        <router-link to="/">Home</router-link>
+     <div class="container text-center pb-4 mt-2">
+      <router-link to="/">
+        <button type="button" class="btn btn-warning"> Home
+        <i class="fas fa-home"></i>
+      </button>
+      </router-link>
     </div>
 
     <div class="d-flex justify-content-center">

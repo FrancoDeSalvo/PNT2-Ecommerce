@@ -1,9 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import Home from "../views/Home.vue";
 import Busqueda from "../views/Busqueda.vue"
-import Carrito from "../components/Carrito.vue";
-import Login from "../components/Login.vue"
-import Registro from "../components/Registro.vue"
+import Carrito from "../views/Carrito.vue";
+import Login from "../components/Usuarios/Login.vue"
+import Registro from "../components/Usuarios/Registro.vue"
 
 //-- CATEGORIA --
 import AgregarCategoria from "../components/Categorias/AgregarCategoria.vue"
