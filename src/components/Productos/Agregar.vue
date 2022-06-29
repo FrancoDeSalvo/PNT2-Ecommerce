@@ -1,6 +1,6 @@
 <template>
   <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3 mb-5">
+    <div class="card col-sm-6 p-3">
 
       <div class="mb-3">
         <h4>Agregar nuevo Producto</h4>
@@ -37,8 +37,8 @@
             <input type="text" class="form-control" name="marca" id="marca" placeholder="Ingrese marca" v-model="form.marca"/>
           </div>
 
-          <div class="mb-2 d-inline me-3">
-            <button class="btn btn-primary text-white" type="submit">Agregar</button>
+          <div class="d-block mt-4 text-center">   
+            <button class="btn btn-success text-white px-4" type="submit">Agregar</button>
           </div>
 
         </form>
@@ -47,7 +47,7 @@
     </div>
   </section>
 
-  <div class="container text-center mb-4 mt-3">
+  <div class="container text-center mt-4 mb-4">
     <router-link to="/">Home</router-link>
   </div>
 </template>
@@ -89,7 +89,7 @@ export default {
             }
             await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Productos", producto);
             alert("Producto agregado con exito")
-            this.$router.push({name: "Home"});
+            this.$router.push({name: "Productos"});
         }else{
             alert("El producto ya existe")
         }

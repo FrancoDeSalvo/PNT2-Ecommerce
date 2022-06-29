@@ -1,6 +1,6 @@
 <template>
   <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3 mb-5">
+    <div class="card col-sm-6 p-3 mt-5">
 
       <div class="mb-3">
         <h4>Deshabilitar Producto: {{producto.nombre}}</h4>
@@ -15,7 +15,7 @@
     </div>
   </section>
 
-  <div class="container text-center mb-4 mt-3">
+  <div class="container text-center mb-4 mt-4">
     <router-link to="/">Home</router-link>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
         const producto = this.buildProduct()
         await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.id}`, producto);
         alert("Producto habiltado con exito")
-        this.$router.push({name: "Home"});
+        this.$router.push({name: "ProductoDetalle"});
       }
       else{
           alert("El producto ya esta habilitado")
@@ -54,7 +54,7 @@ export default {
         const producto = this.buildProduct(true)
         await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.id}`, producto);
         alert("Producto deshabiltado con exito")
-        this.$router.push({name: "Home"});
+        this.$router.push({name: "ProductoDetalle"});
       }
       else{
           alert("El producto ya esta deshabilitado")

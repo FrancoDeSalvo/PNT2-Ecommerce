@@ -13,7 +13,7 @@
   <!-- ADMIN -->
   <div class="d-flex justify-content-center mt-5 mb-5" v-if="admin == 2">
     <router-link to="/AgregarCategoria" class="me-3">
-      <button class="btn btn-outline-primary" type="button">
+      <button class="btn btn-outline-success" type="button">
         Agregar Nueva Categoria <i class="fa-solid fa-plus"></i>
       </button>
     </router-link> 

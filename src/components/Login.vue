@@ -31,7 +31,7 @@
     </div>
   </section>
 
-  <div class="container text-center mb-4 mt-5">
+  <div class="container text-center mb-4 mt-4">
     <router-link to="/">Home</router-link>
   </div>
 

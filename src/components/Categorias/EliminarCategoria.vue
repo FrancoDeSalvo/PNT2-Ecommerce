@@ -1,6 +1,6 @@
 <template>
     <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3 mb-5">
+    <div class="card col-sm-6 p-3 mt-5">
         <div class="mb-3">
             <h4>Eliminar Categoria</h4>
         </div>
@@ -16,14 +16,18 @@
                     <input type="text" class="form-control" name="id" id="id" placeholder="Ingrese ID" required v-model="form.id">
                 </div>
 
-                <div class="mb-2 d-inline"> 
-                    <button class="btn btn-danger text-white" type="submit">Eliminar</button>
+                <div class="d-block mt-4 text-center">   
+                    <button class="btn btn-danger text-white px-4" type="submit">Eliminar</button>
                 </div>
             </form>
             
         </div>
         </div>
     </section>
+
+    <div class="container text-center mt-4">
+        <router-link to="/">Home</router-link>
+    </div>
 
 </template>
 

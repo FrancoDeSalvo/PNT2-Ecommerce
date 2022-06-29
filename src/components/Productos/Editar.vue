@@ -1,6 +1,6 @@
 <template>
   <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3 mb-5">
+    <div class="card col-sm-6 p-3">
 
       <div class="mb-3">
         <h4>Editar Producto</h4>
@@ -41,8 +41,8 @@
             <input type="text" class="form-control" name="marca" id="marca" placeholder="Ingrese marca" v-model="form.marca"/>
           </div>
 
-          <div class="mb-2 d-inline me-3">
-            <button class="btn btn-primary text-white" type="submit">Editar</button>
+          <div class="d-block mt-4 text-center">   
+            <button class="btn btn-success text-white" type="submit">Editar</button>
           </div>
  
         </form>
@@ -52,7 +52,7 @@
     </div>
   </section>
 
-  <div class="container text-center mb-4 mt-3">
+  <div class="container text-center mb-4 mt-4">
     <router-link to="/">Home</router-link>
   </div>
 
@@ -104,7 +104,7 @@ export default {
             }
             await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${encontrado.id}`, producto);
             alert("Producto editado con exito")
-            this.$router.push({name: "Home"});
+            this.$router.push({name: "ProductoDetalle"});
         }
         else{
             alert("No se pudo editar el producto")

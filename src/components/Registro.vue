@@ -31,7 +31,7 @@
                     <input type="text" class="form-control" name="profilePic" id="profilePic" placeholder="Ingrese Foto de perfil" v-model="form.profilePic">
                 </div>
 
-                <div class="mb-3 text-center"> 
+                <div class="mt-4 mb-3 text-center"> 
                     <button class="btn btn-success text-white" type="submit">Crea tu cuenta!</button>
                 </div>
                 <div class="text-center"> 
@@ -63,7 +63,7 @@ export default {
             nombre:null,
             apellido:null,
             dni:null,
-            profilePic: null
+            profilePic: "https://portal.sistemas.edu.bo/images/docente/DEFECTO.jpg"
         }
     };
   },

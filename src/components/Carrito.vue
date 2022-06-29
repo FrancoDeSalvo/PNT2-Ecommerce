@@ -1,11 +1,13 @@
 <template>
   <section class="h-100" style="background-color: #eee;">
-    <div class="container h-100 py-5">
+    <div class="container h-100 pt-3">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-10">
 
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-normal mb-0 text-black">Carrito de compras</h3>
+          <div class="d-flex mb-3">
+            <h3 class="fw-normal mb-0 text-black bg-warning border border-3 border-dark rounded-pill px-3 py-1">
+              Carrito de compras <i class="fa-solid fa-cart-shopping"></i>
+            </h3>
           </div>
 
           <div :key="c.id" v-for="c in productosData" class="">
@@ -23,25 +25,27 @@
         </div>
 
         <div class="card mb-4 text-center">
-            <h4 class="fw-normal mb-0 text-black">Total $ {{this.total}}</h4>
-            <div class="d-flex mt-2 mb-2 mx-2">
-              <div class="save-btn">
-                <button  type="button" class="btn btn-success" @click=" finalizarCarrito()">Generar compra</button>
+            <h4 class="fw-normal mt-2 text-black">Total $ {{this.total}}</h4>
+            <div class="mt-2 mb-2 text-center">
+              <div class="d-inline mx-1">
+                <button type="button" class="btn btn-success" @click=" finalizarCarrito()">Generar compra</button>
               </div>
-              <router-link to="/Carrito">
-                <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
-              </router-link>
+              <div class="d-inline mx-1">
+                <router-link to="/Carrito" >
+                  <button type="button" class="btn btn-danger" @click="vaciarCarrito()"> Vaciar Carrito </button>
+                </router-link>              
+              </div>
             </div>
         </div>
 
         </div>
       </div>
     </div>
-  </section>
 
-  <div class="container text-center mb-4 mt-5">
-    <router-link to="/">Home</router-link>
-  </div>
+    <div class="container text-center pb-4 mt-2">
+      <router-link to="/">Home</router-link>
+    </div>
+  </section>
 
   <div>
     <SavedModal :vacio= "this.carritoVacio" v-show="showModal" @close-modal="showModal = false" />

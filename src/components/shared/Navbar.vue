@@ -57,7 +57,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 
 export default {
   name: "NavBar",
@@ -66,7 +65,6 @@ export default {
       urlMiCuenta: `/MiCuenta/${localStorage.userLogged}`,
       logged: localStorage.logged,
       dataBusqueda:"",
-      // urlBusqueda: `//`
     };
   },
   computed:{
@@ -84,8 +82,6 @@ export default {
         this.$router.push({name: "Home"});
       }        
       this.$router.push({name: "Busqueda", params: { nombre: this.dataBusqueda }});
-      // const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.dataBusqueda}`)
-      // const producto = response.data
     },
     salir(){
       localStorage.logged = 0

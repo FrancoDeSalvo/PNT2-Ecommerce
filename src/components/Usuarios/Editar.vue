@@ -68,7 +68,7 @@ export default {
     async editarUsuario(){
         const user = this.usuarioActual;
         if(user){
-            this.form.username == null ? this.form.username = user.nombreUsuario : console.log(this.form.username);
+            this.form.username == null ? this.form.username = user.nombreUsuario : localStorage.userLoggedName = this.form.username;
             this.form.password == null ? this.form.password = user.password : console.log(this.form.password);
             this.form.nombre == null ? this.form.nombre = user.nombre : console.log(this.form.nombre);
             this.form.apellido == null ? this.form.apellido = user.apellido : console.log(this.form.apellido);
@@ -82,7 +82,7 @@ export default {
             }
             await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`, usuarioCambios);
             alert(`Usuario ${this.form.username} editado con exito`)
-            this.$router.push({name: "Home"});
+            this.$router.push({name: "UsuarioDetalle"});
         }
         else{
             alert("Usuario invalido")

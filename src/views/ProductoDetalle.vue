@@ -2,8 +2,12 @@
 
   <NavBar></NavBar>
 
-  <div class="text-center">
-      <h3 class="d-block text-white bg-secondary row rounded pt-2 pb-2">{{ producto.nombre }}</h3>
+  <div class="d-flex justify-content-center">
+      <div class="text-center mt-3">
+      <h3 class="fw-normal mb-0 text-primary border border-3 border-primary rounded-pill px-3 py-1">
+        {{ producto.nombre }}
+      </h3>
+    </div>
   </div>
 
   <div class="container mt-3">
@@ -27,27 +31,24 @@
         <p class="card-text">{{producto.descripcion}}</p>
 
         <div class="d-flex justify-content-center mt-4">
-            <router-link to="/">
-              <button class="btn btn-outline-success" type="button" @click="addtoCart">
-                Agregar al Carrito <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </router-link>   
+          <button class="btn btn-outline-success" type="button" @click="addtoCart">
+            Agregar al Carrito <i class="fa-solid fa-cart-shopping"></i>
+          </button>
 
-            <!-- ADMIN -->
-            <router-link :to=urlModificar class="mx-2" v-if="admin == 2">
-              <button class="btn btn-outline-warning" type="button">
-                  Modificar <i class="fa-solid fa-pen-to-square"></i>
-              </button>
-            </router-link>  
+          <!-- ADMIN -->
+          <router-link :to=urlModificar class="mx-2" v-if="admin == 2">
+            <button class="btn btn-outline-warning" type="button">
+                Modificar <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </router-link>  
 
-            <router-link :to=urlHabilitacion v-if="admin == 2" class="me-2">
-              <button class="btn btn-outline-primary" type="button">
-                Habilitar <i class="fa-solid fa-check"></i> |
-                Deshabilitar <i class="fa-solid fa-trash-can"></i>
-              </button>
-            </router-link>
-            <!-------------------------->  
-
+          <router-link :to=urlHabilitacion v-if="admin == 2" class="me-2">
+            <button class="btn btn-outline-primary" type="button">
+              Habilitar <i class="fa-solid fa-check"></i> |
+              Deshabilitar <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </router-link>
+          <!-------------------------->  
         </div>
       </div>
 
@@ -96,6 +97,7 @@ export default {
       p.push(this.producto)
       const carrito = {idUsuario: localStorage.userLogged, productos: p}
       await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`, carrito)
+      this.$router.push({name: "Carrito"});
     },
     async disponibilidad(){
       if(this.producto.eliminado){
