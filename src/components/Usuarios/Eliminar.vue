@@ -33,11 +33,10 @@ export default {
   },
   methods: { 
     async getUsuario(){
-        const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`);
-        this.usuario = response.data;
+      const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`);
+      this.usuario = response.data;
     },
     async eliminarUsuario(){
-      // console.log(this.id)
       await axios.delete(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`);
       await axios.delete(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${this.id}`);
       alert("Eliminado con exito")

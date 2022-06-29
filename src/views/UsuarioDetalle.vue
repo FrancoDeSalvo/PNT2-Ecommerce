@@ -63,12 +63,10 @@ export default {
     async loadUser() {
       const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`);
       this.usuario = response.data;
-     
     },
   },
   async created() {
     await this.loadUser();
-    
   },
 };
 

@@ -63,7 +63,7 @@ export default {
       if(!this.usuario.admin){
         const user = this.adminTemplate(true)
         await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.usuario.id}`, user);
-        alert(`Ahora ${this.usuario.nombreUsuario} es administrador`)
+        alert(`Nuevo administrador: ${this.usuario.nombreUsuario}`)
         this.$router.push({name: "Home"});
       }
       else{
@@ -75,7 +75,7 @@ export default {
       if(this.usuario.admin){
         const user = this.adminTemplate()
         await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.usuario.id}`, user);
-        alert(`Ahora ${this.usuario.nombreUsuario} dejó de ser administrador`)
+        alert(`${this.usuario.nombreUsuario} dejó de ser administrador`)
         this.$router.push({name: "Home"});
       }
       else{
@@ -84,15 +84,7 @@ export default {
     },
 
     adminTemplate(bool = false){
-      const userAdmin = {
-          nombreUsuario : this.usuario.nombreUsuario, 
-          password: this.usuario.password, 
-          nombre: this.usuario.nombre, 
-          apellido: this.usuario.apellido,
-          avatar: this.usuario.profilePic,
-          dni: this.usuario.dni,
-          admin: bool
-        }
+      const userAdmin = {admin: bool}
       return userAdmin;
     }
   },

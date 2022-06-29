@@ -61,7 +61,6 @@ export default {
     async loadUsers(url = "https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios") {
       const response = await axios.get(url);
       this.usuarios = response.data;
-      console.log(this.usuarios)
     },
 
     prevPage(){

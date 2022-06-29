@@ -54,8 +54,8 @@ export default {
     async agregarCategoria() {
         let ok = await this.verificarCategoria()
         if(!ok){
-            const categoria = { nombre: this.form.nombreCategoria, img:this.form.img, idCategoria: this.form.id};
-            await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias", categoria);
+            const nuevaCategoria = this.categoriaTemplate()
+            await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias", nuevaCategoria);
             alert("Categoria agregada con exito")
             this.$router.push({name: "Home"});
         }else{
@@ -67,7 +67,11 @@ export default {
       const categorias = response.data; 
       const x = categorias.some(u => u.nombre == this.form.nombreCategoria || u.idCategoria == this.form.id)
       return x;
-    } 
+    },
+    categoriaTemplate(){
+        const categoria = { nombre: this.form.nombreCategoria, img:this.form.img, idCategoria: this.form.id};
+        return categoria;
+    }
   },
 };
 

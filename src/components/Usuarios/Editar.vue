@@ -73,14 +73,8 @@ export default {
             this.form.nombre == null ? this.form.nombre = user.nombre : console.log(this.form.nombre);
             this.form.apellido == null ? this.form.apellido = user.apellido : console.log(this.form.apellido);
             this.form.profilePic == null ? this.form.profilePic = user.avatar : console.log(this.form.profilePic);
-            const usuarioCambios = {
-                nombreUsuario : this.form.username, 
-                password: this.form.password, 
-                nombre: this.form.nombre, 
-                apellido: this.form.apellido,
-                avatar: this.form.profilePic,
-            }
-            await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`, usuarioCambios);
+            const nuevoUsuario = this.userTemplate()
+            await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Usuarios/${this.id}`, nuevoUsuario);
             alert(`Usuario ${this.form.username} editado con exito`)
             this.$router.push({name: "UsuarioDetalle"});
         }
@@ -88,6 +82,16 @@ export default {
             alert("Usuario invalido")
         }
     },
+    userTemplate(){
+        const usuarioCambios = {
+                nombreUsuario : this.form.username, 
+                password: this.form.password, 
+                nombre: this.form.nombre, 
+                apellido: this.form.apellido,
+                avatar: this.form.profilePic,
+            }
+        return usuarioCambios;
+    }
     },
     async created(){
         await this.traerUsuario()

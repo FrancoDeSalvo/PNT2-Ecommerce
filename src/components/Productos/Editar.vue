@@ -92,17 +92,8 @@ export default {
             this.form.descripcion == null ? this.form.descripcion = encontrado.descripcion : console.log(this.form.descripcion);
             this.form.marca == null ? this.form.marca = encontrado.marca : console.log(this.form.marca);
 
-            const producto = { 
-            nombre: this.form.nombre, 
-            img: this.form.img, 
-            categoria: this.form.categoria,
-            stock: this.form.stock,
-            marca: this.form.marca,
-            precio: this.form.precio,
-            descripcion: this.form.descripcion,
-            eliminado: false
-            }
-            await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${encontrado.id}`, producto);
+            const nuevoProducto = this.productoTemplate()
+            await axios.put(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${encontrado.id}`, nuevoProducto);
             alert("Producto editado con exito")
             this.$router.push({name: "ProductoDetalle"});
         }
@@ -114,7 +105,20 @@ export default {
       const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.id}`); 
       this.producto = response.data; 
       return this.producto;
-    } 
+    },
+    productoTemplate(){
+      const producto = { 
+        nombre: this.form.nombre, 
+        img: this.form.img, 
+        categoria: this.form.categoria,
+        stock: this.form.stock,
+        marca: this.form.marca,
+        precio: this.form.precio,
+        descripcion: this.form.descripcion,
+        eliminado: false
+      }
+      return producto;
+    }
     },
     async created(){
         await this.getProducto();

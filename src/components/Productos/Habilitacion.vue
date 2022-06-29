@@ -27,11 +27,6 @@ export default {
   name: "EliminarProducto",
   data() {
     return {
-      form: {
-          nombre: null,
-          marca: null,
-          categoria: null,
-      },
       producto: Object,
       id: this.$route.params.id,
     };
@@ -66,19 +61,9 @@ export default {
       this.producto = response.data; 
     },
     buildProduct(eliminado = false){
-      const p = this.producto;
       let producto;
-      if(p){
-          producto = { 
-            nombre: p.nombre, 
-            img: p.img, 
-            categoria: p.categoria,
-            stock: p.stock,
-            marca: p.marca,
-            precio: p.precio,
-            descripcion: p.descripcion,
-            eliminado: eliminado
-          }
+      if(this.producto){
+        producto = {eliminado: eliminado}
       }
       return producto;
     }
