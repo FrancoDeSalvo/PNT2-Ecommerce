@@ -22,11 +22,14 @@
           </div>
           <div class="mb-2">
             <label for="precio">Precio</label>
-            <input type="text" class="form-control" name="precio" id="precio" placeholder="Ingrese precio" required v-model="form.precio"/>
+            <input type="number" class="form-control" name="precio" id="precio" placeholder="Ingrese precio" required v-model="form.precio"/>
           </div>
           <div class="mb-2">
             <label for="categoria">Categoria</label>
-            <input type="text" class="form-control" name="categoria" id="categoria" placeholder="Ingrese categoria" required v-model="form.categoria"/>
+            <select class="form-select" v-model="form.categoria">
+              <option disabled value>-- Elige una categoria --</option>
+              <option :key="c.id" v-for="c in nombreCategorias">{{c}}</option>
+            </select>
           </div>
           <div class="mb-2">
             <label for="img">Imagen</label>
@@ -60,26 +63,40 @@ export default {
   name: "AgregarProducto",
   data() {
     return {
+      categorias: [],
       form: {
         nombre: null,
         stock: null,
         descripcion: null,
         precio: null,
         marca: null,
-        categoria: null,
+        categoria: '',
         img: null
       }
     };
   },
   props: {},
+  computed:{
+    nombreCategorias(){
+      let data = [];
+      this.categorias.forEach(c => {
+        data.push(c.nombre)
+      })
+      return data;
+    }
+  },
   methods: { 
+    async obtenerCategorias(){
+      const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias")
+      this.categorias = response.data
+    },
     async agregarProducto() {
       let ok = await this.verificarProducto()
       if(!ok){
         const nuevoProducto = this.productoTemplate()
         await axios.post("https://62a389b85bd3609cee6be5d9.mockapi.io/Productos", nuevoProducto);
         alert("Producto agregado con exito")
-        this.$router.push({name: "Productos"});
+        this.$router.push({path: `/Productos/${this.form.categoria}`});
       }else{
         alert("El producto ya existe")
       }
@@ -87,14 +104,15 @@ export default {
     async verificarProducto(){
       const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Productos"); 
       const productos = response.data; 
-      const x = productos.some(u => u.nombre == this.form.nombre && u.categoria == this.form.categoria)
+      const x = productos.some(u => u.nombre == this.form.nombre && u.categoria == this.obtenerCodigoCategoria())
+      console.log(x);
       return x;
     },
     productoTemplate(){
       const producto = { 
         nombre: this.form.nombre, 
         img: this.form.img, 
-        categoria: this.form.categoria,
+        categoria: this.obtenerCodigoCategoria(),
         stock: this.form.stock,
         marca: this.form.marca,
         precio: this.form.precio,
@@ -102,7 +120,14 @@ export default {
         eliminado: false
       }
       return producto;
+    },
+    obtenerCodigoCategoria(){
+      const categoria = this.categorias.find(x => x.nombre === this.form.categoria)
+      return categoria.idCategoria;
     }
   },
+  async created(){
+    await this.obtenerCategorias()
+  }
 };
 </script>
