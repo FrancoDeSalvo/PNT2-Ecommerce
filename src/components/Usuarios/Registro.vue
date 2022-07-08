@@ -1,51 +1,50 @@
 <template>
-     <section class="d-flex justify-content-center mt-4 text-info ">
-        <div class="card col-sm-6 p-3 border border-4">
+    <div class="container d-flex justify-content-center mt-4 text-info">
+    <div class="card col-sm-6 p-3 border border-2 border-primary">
+
         <div class="mb-3 text-center">
-            <h4>Registrate!</h4>
+            <h4 class="text-white bg-primary rounded px-3 py-2">
+                Registrate!
+            </h4>
         </div>
-        <div class="mb-2">
-            <form v-on:submit.prevent="registro">
-                <div class=""> 
-                    <label for="nombreUsuario">Nombre de Usuario</label>
-                    <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese nombre de usuario" required v-model="form.username">
-                </div>
-                <div class="mb-2"> 
-                    <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
-                </div>
-                <div class="mb-2"> 
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required v-model="form.nombre">
-                </div>
-                <div class="mb-2"> 
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" required v-model="form.apellido">
-                </div>
-                <div class="mb-4"> 
-                    <label for="dni">Dni</label>
-                    <input type="text" class="form-control" name="dni" id="dni" placeholder="Ingrese su dni" required v-model="form.dni">
-                </div>
-                <div class="mb-2"> 
-                    <label for="profilePic">Foto de perfil</label>
-                    <input type="text" class="form-control" name="profilePic" id="profilePic" placeholder="Ingrese Foto de perfil" v-model="form.profilePic">
-                </div>
 
-                <div class="mt-4 mb-3 text-center"> 
-                    <button class="btn btn-success text-white" type="submit">Crea tu cuenta!</button>
-                </div>
-                <div class="text-center"> 
-                    <router-link class="link active" to="/Login">Ya tienes cuenta? Iniciar sesion</router-link>
-                </div>
-
-            </form>
+    <form v-on:submit.prevent="registro" class="row g-3">
+        <div class="col-md-6">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required v-model="form.nombre">
         </div>
+        <div class="col-md-6">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" required v-model="form.apellido">
         </div>
-    </section>
+        <div class="col-md-6">
+            <label for="nombreUsuario">Nombre de Usuario</label>
+            <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese nombre de usuario" required v-model="form.username">
+        </div>
+        <div class="col-md-6">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
+        </div>
+        <div class="col-12">
+            <label for="dni">DNI</label>
+            <input type="text" class="form-control" name="dni" id="dni" placeholder="Ingrese su dni" required v-model="form.dni">
+        </div>
+        <div class="col-12">
+            <label for="profilePic">Foto de perfil</label>
+            <input type="text" class="form-control" name="profilePic" id="profilePic" placeholder="Ingrese Foto de perfil" v-model="form.profilePic">
+        </div>
+        <div class="mb-2 mt-4 text-center"> 
+            <button class="btn btn-outline-primary" type="submit">Crea tu cuenta!</button>
+        </div>
+        <div class="text-center"> 
+            <router-link class="link active" to="/Login">Ya tienes cuenta? Iniciar sesion</router-link>
+        </div>
+    </form>
+    </div>
+    </div>
 
-   <div class="container text-center pb-4 mt-2">
-      <router-link to="/">
-        <button type="button" class="btn btn-warning"> Home
+   <div class="container text-center pb-4 mt-4">
+      <router-link to="/"><button type="button" class="btn btn-warning">Home
         <i class="fas fa-home"></i>
       </button>
       </router-link>

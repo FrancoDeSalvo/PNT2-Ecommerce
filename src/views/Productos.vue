@@ -4,7 +4,7 @@
 
   <div>
     <div class="text-center">
-      <h1 class="d-block text-white bg-success row rounded pt-2 pb-2">- {{ categoria }} -</h1><br>
+      <h1 class="d-block text-white bg-primary row rounded pt-2 pb-2">- {{ categoria }} -</h1><br>
     </div>
   </div>
 
@@ -27,7 +27,7 @@
 
   <!-- ADMIN -->
   <div class="d-flex justify-content-center mt-5 mb-5" v-if="admin == 2">
-    <router-link to="/AgregarProducto" class="me-3">
+    <router-link :to=urlAgregarProducto class="me-3">
       <button class="btn btn-outline-success" type="button">
         Agregar Nuevo Producto <i class="fa-solid fa-plus"></i>
       </button>
@@ -52,6 +52,7 @@ export default {
       categoria: this.$route.params.categoria,
       categoriaId: null,
       admin: localStorage.logged,
+      urlAgregarProducto: `/AgregarProducto/${this.$route.params.categoria}`
     };
   },
   components: {

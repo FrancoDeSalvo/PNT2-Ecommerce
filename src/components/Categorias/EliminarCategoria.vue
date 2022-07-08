@@ -1,45 +1,39 @@
 <template>
-    <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3 mt-2">
-        <div class="mb-3">
-            <h4>Eliminar Categoria</h4>
+    <div class="container d-flex justify-content-center mt-4 text-info">
+    <div class="card col-sm-6 p-3 border border-2 border-danger">
+
+        <div class="mb-3 text-center">
+            <h4 class="text-white bg-danger rounded px-3 py-2">
+                Eliminar Categoria
+            </h4>
         </div>
 
-        <div class="mb-2">
-            <form v-on:submit.prevent="eliminarCategoria">
-                <div class="mb-2"> 
-                    <label for="nombre">Nombre de la categoria</label>
-                    <!-- <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre" v-model="form.nombreCategoria"> -->
-                    <select class="form-select" v-model="form.nombreCategoria">
-                        <option disabled value>-- Elige una categoria --</option>
-                        <option :key="c.id" v-for="c in categorias">{{c.nombre}}</option>
-                    </select>
-                </div>
-                <div class="mb-2"> 
-                    <label for="password">ID</label>
-                    <input type="text" class="form-control" name="id" id="id" placeholder="Ingrese ID" required v-model="form.id">
-                </div>
+        <form v-on:submit.prevent="eliminarCategoria" class="row g-3">
+            <div class="col-md-6"> 
+                <label for="nombre">Nombre de la categoria</label>
+                <select class="form-select" v-model="form.nombreCategoria">
+                    <option disabled value>-- Elige una categoria --</option>
+                    <option :key="c.id" v-for="c in categorias">{{c.nombre}}</option>
+                </select>
+            </div>
+            <div class="col-md-6"> 
+                <label for="password">ID</label>
+                <input type="text" class="form-control" name="id" id="id" placeholder="Ingrese ID" required v-model="form.id">
+            </div>
 
-                <div class="d-block mt-4 text-center">   
-                    <button class="btn btn-danger text-white px-4" type="submit">Eliminar</button>
-                </div>
-            </form>
+            <div class="d-block mt-4 text-center">   
+                <button class="btn btn-outline-danger px-4" type="submit">
+                    Eliminar <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </form>
             
-        </div>
-        </div>
-    </section>
-
-     <div class="container text-center pb-4 mt-2">
-      <router-link to="/">
-        <button type="button" class="btn btn-warning"> Home
-        <i class="fas fa-home"></i>
-      </button>
-      </router-link>
+    </div>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt-4">
         <div class="text-center">
-            <h5 class="fw-normal mb-0 text-white bg-success border border-3 border-success rounded-pill px-3 py-1">
+            <h5 class="text-info border border-3 border-info rounded-pill px-3 py-1">
                 Categorias Actuales
             </h5>
         </div>
@@ -52,6 +46,14 @@
             </div>
         </div>
         </div>
+    </div>
+
+    <div class="container text-center pb-4 mt-4">
+      <router-link to="/">
+        <button type="button" class="btn btn-warning">
+            Home <i class="fas fa-home"></i>
+        </button>
+      </router-link>
     </div>
 
 </template>

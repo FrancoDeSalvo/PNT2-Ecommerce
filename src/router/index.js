@@ -92,7 +92,7 @@ const routes = [
         beforeEnter: [admin]
     },
     {
-        path: '/AgregarProducto', 
+        path: '/AgregarProducto/:categoria', 
         name: 'AgregarProducto',
         component: Agregar,
         beforeEnter: [admin]

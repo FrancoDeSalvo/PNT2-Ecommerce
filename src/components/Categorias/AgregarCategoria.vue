@@ -1,45 +1,40 @@
 <template>
-    <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3 mt-2">
-        <div class="mb-3">
-            <h4>Agregar nueva Categoria</h4>
+    <div class="container d-flex justify-content-center mt-4 text-info">
+    <div class="card col-sm-6 p-3 border border-2 border-success">
+
+        <div class="mb-3 text-center">
+            <h4 class="text-white bg-success rounded px-3 py-2">
+                Agregar nueva Categoria
+            </h4>
         </div>
 
-        <div class="mb-2">
-            <form v-on:submit.prevent="agregarCategoria">
-                <div class="mb-2"> 
-                    <label for="nombre">Nombre de la categoria</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre" required v-model="form.nombreCategoria">
-                </div>
-                <div class="mb-2"> 
-                    <label for="img">Imagen</label>
-                    <input type="text" class="form-control" name="img" id="img" placeholder="Ingrese imagen" required v-model="form.img">
-                </div>
-                <div class="mb-2"> 
-                    <label for="idCategoria">ID</label>
-                    <input type="text" class="form-control" name="idCategoria" id="idCategoria" placeholder="Ingrese ID" required v-model="form.id">
-                </div>
+        <form v-on:submit.prevent="agregarCategoria" class="row g-3">
+            <div class="col-md-6"> 
+                <label for="nombre">Nombre de la categoria</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre" required v-model="form.nombreCategoria">
+            </div>
+            <div class="col-md-6"> 
+                <label for="idCategoria">ID</label>
+                <input type="text" class="form-control" name="idCategoria" id="idCategoria" placeholder="Ingrese ID" required v-model="form.id">
+            </div>
+            <div class="col-12"> 
+                <label for="img">Imagen</label>
+                <input type="text" class="form-control" name="img" id="img" placeholder="Ingrese imagen" required v-model="form.img">
+            </div>
 
-                <div class="d-block mt-4 text-center">   
-                    <button class="btn btn-success text-white px-4" type="submit">Agregar</button>
-                </div>
-            </form>
+            <div class="d-block mt-4 text-center">   
+                <button class="btn btn-outline-success px-4" type="submit">
+                    Agregar <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </form>
             
-        </div>
-        </div>
-    </section>
-
-    <div class="container text-center pb-4 mt-2">
-      <router-link to="/">
-        <button type="button" class="btn btn-warning"> Home
-        <i class="fas fa-home"></i>
-      </button>
-      </router-link>
+    </div>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt-4">
         <div class="text-center">
-            <h5 class="fw-normal mb-0 text-white bg-success border border-3 border-success rounded-pill px-3 py-1">
+            <h5 class="text-info border border-3 border-info rounded-pill px-3 py-1">
                 Categorias Actuales
             </h5>
         </div>
@@ -52,6 +47,14 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <div class="container text-center pb-4 mt-4">
+      <router-link to="/">
+        <button type="button" class="btn btn-warning">Home
+            <i class="fas fa-home"></i>
+        </button>
+      </router-link>
     </div>
 
 </template>

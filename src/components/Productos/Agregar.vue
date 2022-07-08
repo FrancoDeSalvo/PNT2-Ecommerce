@@ -1,62 +1,62 @@
 <template>
-  <section class="d-flex justify-content-center mt-4 text-info">
-    <div class="card col-sm-6 p-3">
+  <div class="container d-flex justify-content-center mt-4 text-info">
+  <div class="card col-sm-6 p-3 border border-2 border-success">
 
-      <div class="mb-3">
-        <h4>Agregar nuevo Producto</h4>
+      <div class="mb-3 text-center">
+        <h4 class="text-white bg-success rounded px-3 py-2">
+          Agregar nuevo Producto            
+        </h4>
       </div>
+  
+      <form v-on:submit.prevent="agregarProducto" class="row g-3">
+        <div class="col-md-6">
+          <label for="nombre">Nombre del producto</label>
+          <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre" required v-model="form.nombre"/>
+        </div>
+        <div class="col-md-6">
+          <label for="descripcion">Descripcion</label>
+          <input type="descripcion" class="form-control" name="descripcion" id="descripcion" placeholder="Ingrese descripcion" required v-model="form.descripcion"/>
+        </div>
+        <div class="col-md-6">
+          <label for="categoria">Categoria: {{form.categoria}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="marca">Marca</label>
+          <input type="text" class="form-control" name="marca" id="marca" placeholder="Ingrese marca" required v-model="form.marca"/>
+        </div>
+        <div class="col-md-6">
+          <label for="stock">Stock</label>
+          <input type="number" class="form-control" name="stock" id="stock" placeholder="Ingrese stock" required v-model="form.stock"/>
+        </div>
+        <div class="col-md-6">
+          <label for="precio">Precio</label>
+          <input type="number" class="form-control" name="precio" id="precio" placeholder="Ingrese precio" required v-model="form.precio"/>
+        </div>
+        <div class="col-12">
+          <label for="img">Imagen</label>
+          <input type="text" class="form-control" name="img" id="img" placeholder="Ingrese imagen" required v-model="form.img"/>
+        </div>
 
-      <div class="mb-2">
-        <form v-on:submit.prevent="agregarProducto">
-          <div class="mb-2">
-            <label for="nombre">Nombre del producto</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre" required v-model="form.nombre"/>
-          </div>
-          <div class="mb-2">
-            <label for="descripcion">Descripcion</label>
-            <input type="descripcion" class="form-control" name="descripcion" id="descripcion" placeholder="Ingrese descripcion" required v-model="form.descripcion"/>
-          </div>
-          <div class="mb-2">
-            <label for="stock">Stock</label>
-            <input type="text" class="form-control" name="stock" id="stock" placeholder="Ingrese stock" required v-model="form.stock"/>
-          </div>
-          <div class="mb-2">
-            <label for="precio">Precio</label>
-            <input type="number" class="form-control" name="precio" id="precio" placeholder="Ingrese precio" required v-model="form.precio"/>
-          </div>
-          <div class="mb-2">
-            <label for="categoria">Categoria</label>
-            <select class="form-select" v-model="form.categoria">
-              <option disabled value>-- Elige una categoria --</option>
-              <option :key="c.id" v-for="c in nombreCategorias">{{c}}</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label for="img">Imagen</label>
-            <input type="text" class="form-control" name="img" id="img" placeholder="Ingrese imagen" required v-model="form.img"/>
-          </div>
-          <div class="mb-2">
-            <label for="marca">Marca</label>
-            <input type="text" class="form-control" name="marca" id="marca" placeholder="Ingrese marca" required v-model="form.marca"/>
-          </div>
+        <div class="d-block mt-4 text-center">   
+          <button class="btn btn-outline-success px-4" type="submit">Agregar <i class="fa-solid fa-plus"></i></button>
+        </div>
 
-          <div class="d-block mt-4 text-center">   
-            <button class="btn btn-success text-white px-4" type="submit">Agregar</button>
-          </div>
-
-        </form>
-      </div>
+      </form>
 
     </div>
-  </section>
+    </div>
 
-   <div class="container text-center pb-4 mt-2">
-      <router-link to="/">
-        <button type="button" class="btn btn-warning"> Home
-        <i class="fas fa-home"></i>
+  <div class="container text-center pb-4 mt-4">
+    <router-link :to=urlProductos class="me-2">
+      <button type="button" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>
+        Volver a {{form.categoria}}
       </button>
-      </router-link>
-    </div>
+    </router-link>
+    <router-link to="/" >
+      <button type="button" class="btn btn-warning"> Home <i class="fas fa-home"></i></button>
+    </router-link>
+  </div>
+
 </template>
 
 
@@ -68,27 +68,28 @@ export default {
   data() {
     return {
       categorias: [],
+      urlProductos: `/Productos/${this.$route.params.categoria}`,
       form: {
         nombre: null,
         stock: null,
         descripcion: null,
         precio: null,
         marca: null,
-        categoria: '',
+        categoria: this.$route.params.categoria,
         img: null
       }
     };
   },
   props: {},
-  computed:{
-    nombreCategorias(){
-      let data = [];
-      this.categorias.forEach(c => {
-        data.push(c.nombre)
-      })
-      return data;
-    }
-  },
+  // computed:{
+  //   nombreCategorias(){
+  //     let data = [];
+  //     this.categorias.forEach(c => {
+  //       data.push(c.nombre)
+  //     })
+  //     return data;
+  //   }
+  // },
   methods: { 
     async obtenerCategorias(){
       const response = await axios.get("https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias")

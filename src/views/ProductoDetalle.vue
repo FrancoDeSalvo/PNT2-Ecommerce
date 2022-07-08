@@ -3,7 +3,7 @@
   <NavBar></NavBar>
 
   <div class="d-flex justify-content-center">
-      <div class="text-center mt-3">
+    <div class="text-center mt-3">
       <h3 class="fw-normal mb-0 text-primary border border-3 border-primary rounded-pill px-3 py-1">
         {{ producto.nombre }}
       </h3>
@@ -54,15 +54,12 @@
 
     </div>
   </div>
-
-    <br>  
-    <div class="container text-center pb-4 mt-2">
-      <router-link to="/">
-        <button type="button" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      </router-link>
-    </div>
+  
+  <div class="container text-center pb-4 mt-4">
+    <router-link :to=urlProductos>
+      <button type="button" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></button>
+    </router-link>
+  </div>
 
 </template>
 
@@ -81,6 +78,7 @@ export default {
       admin: localStorage.logged,
       urlModificar: `/EditarProducto/${this.$route.params.id}`,
       urlHabilitacion: `/HabilitacionProducto/${this.$route.params.id}`,
+      urlProductos: "",
     };
   },
   components:{
@@ -91,6 +89,12 @@ export default {
       const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Productos/${this.id}`);
       this.producto = response.data;
       this.disponibilidad()
+    },
+    async getCategoria(){
+      const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Categorias`)
+      const categorias = response.data;
+      const {nombre} = categorias.find(x => x.idCategoria === this.producto.categoria)
+      this.urlProductos = `/Productos/${nombre}`;
     },
     async getCarrito(){
       const response = await axios.get(`https://62a389b85bd3609cee6be5d9.mockapi.io/Carritos/${localStorage.userLogged}`)
@@ -113,6 +117,7 @@ export default {
   async created() {
     await this.loadProducto();
     await this.getCarrito();
+    await this.getCategoria();
   },
 };
 

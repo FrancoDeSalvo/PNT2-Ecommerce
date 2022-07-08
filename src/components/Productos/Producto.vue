@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="card text-center" style="width: 18rem;">
       <router-link :to="url">
-        <img :src= "producto.img" class="card-img-top" alt="Responsive image" style="width: 70%"/>
+        <img :src= "producto.img" class="card-img-top img-fluid" alt="Responsive image" style="width: 70%"/>
         <h5 class="card-title"> {{producto.nombre}}</h5>
       </router-link>
       <div class="card-body">

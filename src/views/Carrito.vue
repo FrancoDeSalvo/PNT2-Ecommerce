@@ -10,6 +10,10 @@
             </h3>
           </div>
 
+          <div v-if=!hayProductos>
+            <h6>El carrito esta vacio</h6>
+          </div>
+
           <div :key="c.id" v-for="c in productosData" class="">
             <ItemCarrito :producto="c" />
           </div>
@@ -90,6 +94,11 @@ export default {
       );
       return data;
     },
+    hayProductos(){
+      let ok;
+      this.productos.length > 0 ? ok = true : ok = false;
+      return ok;
+    }
   },
   methods: {
     async vaciarCarrito(){
@@ -125,8 +134,7 @@ export default {
               k.precio = x.precio
               k.precioTotal = x.precio * k.occurrence
         }})
-        }
-        else{
+        } else{
           let a = {}
           a[key] = x[key]
           a.nombre = x.nombre
@@ -151,8 +159,8 @@ export default {
     },
 
     finalizarCarrito(){
-       if(this.items.length >= 1){
-         this.carritoVacio = false
+      if(this.items.length >= 1){
+        this.carritoVacio = false
       }
       this.showModal = true
       this.vaciarCarrito()
