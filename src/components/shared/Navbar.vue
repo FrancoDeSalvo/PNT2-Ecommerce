@@ -12,13 +12,15 @@
             <router-link class="nav-link active" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link active" to="/Carrito">
+            <router-link class="nav-link active" to="/Carrito" @click="paginaActualCarrito()">
               Carrito <i class="fa-solid fa-cart-shopping"></i>
             </router-link>
           </li>
 
         </ul>
       </div>
+
+      <!-- BUSQUEDA -->
       <form class="d-flex me-2" v-on:submit.prevent>
         <input class="form-control me-2" type="search" placeholder="Buscas algun producto?" aria-label="Search" v-model="dataBusqueda">
         <button class="btn btn-outline-light" type="submit" @click="busqueda()">
@@ -26,6 +28,7 @@
         </button>
       </form>
 
+      <!-- ANTES DE LOGUEARSE -->
       <div class="d-flex" v-if="logged == 0">
         <router-link class="link active me-2" to="/Login">
           <input class="btn btn-outline-primary" type="submit" value="Ingresar" />
@@ -35,6 +38,7 @@
         </router-link>
       </div>
 
+      <!-- DESPUES DE LOGUEARSE (sea admin o no) -->
       <div class="d-flex" v-else>
         <router-link class="link active me-2" to="/AdministrarUsuarios" v-if="logged == 2"> 
           <button class="btn btn-outline-warning" type="submit" value="Usuarios">
@@ -85,6 +89,10 @@ export default {
     },
     salir(){
       localStorage.logged = 0
+      localStorage.currentPage = "/"
+    },
+    paginaActualCarrito(){
+      localStorage.currentPage = `/Carrito`;
     }
   },
 };

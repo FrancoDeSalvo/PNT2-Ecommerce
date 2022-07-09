@@ -19,7 +19,7 @@
       </div>
       <div class="col-md-6"> 
         <label for="categoria">Categoria</label>
-        <select class="form-select" v-model="form.categoria">
+        <select class="form-select" v-model="form.categoria" required>
           <option disabled value>-- Elige una categoria --</option>
           <option :key="c.id" v-for="c in nombreCategorias">{{c}}</option>
         </select>

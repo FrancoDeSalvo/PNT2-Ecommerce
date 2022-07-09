@@ -24,14 +24,12 @@ import UsuarioDetalle from "../views/UsuarioDetalle.vue"
 
 //-------------------------------------------------------------------------------------
 const logged = () => {
-    // console.log("index.js localStorage.logged user", localStorage.logged)
     if (localStorage.logged == 0 || !localStorage.logged) {
         return { path: '/Login', name: 'Login', component: Login }
     }
 }
 
 const admin = () => {
-    // console.log("index.js localStorage.logged admin", localStorage.logged)
     if (localStorage.logged == 2) {
         return true
     }

@@ -1,8 +1,8 @@
 <template>
   <div class="row justify-content-center">
     <div class="card text-center" style="width: 18rem;">
-      <router-link :to="url">
-        <img :src= "producto.img" class="card-img-top img-fluid" alt="Responsive image" style="width: 70%"/>
+      <router-link :to="url" @click="paginaActual()">
+        <img :src= "producto.img" class="img-fluid" alt="Responsive image" style="width: auto; height: 150px;"/>
         <h5 class="card-title"> {{producto.nombre}}</h5>
       </router-link>
       <div class="card-body">
@@ -31,6 +31,9 @@ export default {
       if(this.producto.eliminado){
         this.disponible = "No disponible";
       }
+    },
+    paginaActual(){
+      localStorage.currentPage = this.url;
     }
   },
   created(){

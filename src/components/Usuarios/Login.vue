@@ -8,34 +8,33 @@
     </div>
     
     <div class="mb-3 text-center">
-        <h4 class="text-white bg-primary rounded px-3 py-2">
-        <!-- <h4 class="text-primary border border-3 border-primary rounded-pill px-3 py-2"> -->
-            Iniciar Sesion
-        </h4>
+      <h4 class="text-white bg-primary rounded px-3 py-2">
+        Iniciar Sesion
+      </h4>
     </div>
 
     <form v-on:submit.prevent="login" class="row g-3">
-        <div class="col-12">
-            <label for="nombre">Nombre de Usuario</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre de usuario" v-model="form.username">
-        </div>
-        <div class="col-12">
-            <label for="password">Contraseña</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
-        </div>
+      <div class="col-12">
+          <label for="nombre">Nombre de Usuario</label>
+          <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombre de usuario" v-model="form.username">
+      </div>
+      <div class="col-12">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese contraseña" required v-model="form.password">
+      </div>
 
-        <div class="mb-2 mt-4 text-center">   
-            <button class="btn btn-primary text-white" type="submit">Ingresar</button>
-        </div>
-        <div class="text-center"> 
-            <router-link class="link active" to="/Registro">No tienes cuenta? Registrate</router-link>
-        </div>
+      <div class="mb-2 mt-4 text-center">   
+          <button class="btn btn-primary text-white" type="submit">Ingresar</button>
+      </div>
+      <div class="text-center"> 
+          <router-link class="link active" to="/Registro">No tienes cuenta? Registrate</router-link>
+      </div>
     </form>
 
     </div>
     </div>
 
-   <div class="container text-center pb-4 mt-4">
+    <div class="container text-center pb-4 mt-4">
       <router-link to="/">
         <button type="button" class="btn btn-warning"> Home
         <i class="fas fa-home"></i>
@@ -65,7 +64,7 @@ export default {
       const user = await this.loginUser();
       const admin = await this.loginAdmin();
       if(user || admin){
-        this.$router.push({name: "Home"});
+        this.$router.push({path: localStorage.currentPage});
       }
       else{
         alert("usuario o contraseña incorrecto")

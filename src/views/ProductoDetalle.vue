@@ -13,8 +13,8 @@
   <div class="container mt-3">
     <div class="row">
 
-      <div class="col-6 text-center mt-5">
-        <img :src= "producto.img" class="card-img-top img-fluid w-50" alt="Responsive image" />
+      <div class="col-6 text-center" >
+        <img :src= "producto.img" class="img-fluid" alt="Responsive image" style="width: auto; height: 300px"/>
       </div>
 
       <div class="col-6">

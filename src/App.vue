@@ -12,6 +12,7 @@ export default {
   },
   created(){
     localStorage.logged = 0;
+    localStorage.currentPage = "/";
     console.log("app.vue", localStorage.logged);
   }
 };
